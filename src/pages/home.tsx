@@ -60,7 +60,7 @@ export const HomePage = (): ReactElement => {
 
   return (
     <div className="rounded-md shadow-md flex flex-col items-center py-8 min-h-screen">
-      <div className="bg-red max-w-[30rem] mt-[8rem] w-full">
+      <div className="bg-red max-w-[30rem] mt-[8rem] w-full px-3">
         <form
           className="flex w-full"
           onSubmit={(event: FormEvent<HTMLFormElement>): void => {
@@ -72,13 +72,13 @@ export const HomePage = (): ReactElement => {
             name="add"
             autoComplete="off"
             id="add"
-            className="border-2 border-teal-500 outline-none caret-white text-white px-4 py-2 rounded-md flex-1 bg-transparent focus:outline-none text-lg hover:scale-105 transition-all duration-700 hover:duration-150"
+            className="border-2 border-teal-500 outline-none caret-white text-white px-4 py-2 rounded-md flex-1 bg-transparent focus:outline-none text-lg md:hover:scale-105 transition-all duration-700 hover:duration-150"
             value={input}
             onChange={(event: ChangeEvent<HTMLInputElement>): void => setInput(event.target.value)}
           />
           <button
             type="submit"
-            className="bg-teal-500 text-white ml-6 px-4 py-2 rounded-md hover:scale-105 transition-all duration-700 hover:duration-150 select-none">
+            className="bg-teal-500 text-white ml-6 px-4 py-2 rounded-md md:hover:scale-105 transition-all duration-700 hover:duration-150 select-none">
             Add
           </button>
         </form>
@@ -88,7 +88,7 @@ export const HomePage = (): ReactElement => {
             return (
               <div
                 key={task.id}
-                className={`duration-700 hover:scale-105 hover:duration-150 transition-all flex ${
+                className={`duration-700 md:hover:scale-105 hover:duration-150 transition-all flex ${
                   task.done ? 'bg-[#3d4046]' : 'bg-[#2d3036]'
                 }`}>
                 <button
