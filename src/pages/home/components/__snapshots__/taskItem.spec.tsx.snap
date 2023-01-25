@@ -1,0 +1,85 @@
+// Vitest Snapshot v1
+
+exports[`<TaskItem /> > should render a done task 1`] = `
+<div>
+  <div
+    class="duration-700 md:hover:scale-105 hover:duration-150 transition-all flex bg-[#3d4046]"
+  >
+    <button
+      class="border-l-4  pl-4 pr-7 py-2 flex-1 text-left text-lg capitalize select-none line-through border-l-teal-500 text-gray-500 "
+      type="button"
+    >
+      name-task-mock
+    </button>
+    <button
+      class="bg-teal-500 text-white p-3 select-none"
+      type="button"
+    >
+      X
+    </button>
+  </div>
+</div>
+`;
+
+exports[`<TaskItem /> > should render a item 1`] = `
+<div>
+  <div
+    class="duration-700 md:hover:scale-105 hover:duration-150 transition-all flex bg-[#3d4046]"
+  >
+    <button
+      class="border-l-4  pl-4 pr-7 py-2 flex-1 text-left text-lg capitalize select-none line-through border-l-teal-500 text-gray-500 "
+      type="button"
+    >
+      name-task-mock
+    </button>
+    <button
+      class="bg-teal-500 text-white p-3 select-none"
+      type="button"
+    >
+      X
+    </button>
+  </div>
+</div>
+`;
+
+exports[`<TaskItem /> > should render a not done task 1`] = `
+<div>
+  <div
+    class="duration-700 md:hover:scale-105 hover:duration-150 transition-all flex bg-[#2d3036]"
+  >
+    <button
+      class="border-l-4  pl-4 pr-7 py-2 flex-1 text-left text-lg capitalize select-none border-l-orange-500 text-white "
+      type="button"
+    >
+      name-task-mock
+    </button>
+    <button
+      class="bg-teal-500 text-white p-3 select-none"
+      type="button"
+    >
+      X
+    </button>
+  </div>
+</div>
+`;
+
+exports[`<TaskItem /> > should render done task 1`] = `
+<div>
+  <div
+    class="duration-700 md:hover:scale-105 hover:duration-150 transition-all flex bg-[#2d3036]"
+  >
+    <button
+      class="border-l-4  pl-4 pr-7 py-2 flex-1 text-left text-lg capitalize select-none border-l-orange-500 text-white "
+      type="button"
+    >
+      name-task-mock
+    </button>
+    <button
+      class="bg-teal-500 text-white p-3 select-none"
+      type="button"
+    >
+      X
+    </button>
+  </div>
+</div>
+`;

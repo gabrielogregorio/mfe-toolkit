@@ -11,7 +11,8 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@/services': resolve(__dirname, './src/core/services'),
+      '@/services': resolve(__dirname, './src/common/services'),
+      '@/utils': resolve(__dirname, './src/common/utils'),
       '@/pages': resolve(__dirname, './src/pages'),
     },
   },
