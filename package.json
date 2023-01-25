@@ -1,6 +1,6 @@
 {
   "name": "daily-tasks",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "homepage": "https://gabrielogregorio.github.io/daily-tasks",
   "private": false,
   "main": "build/index.js",
@@ -15,6 +15,7 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage --watch=false",
+    "test:watch:coverage": "vitest --coverage --watch=true",
     "preview": "vite preview",
     "clear": "rm -rf build coverage",
     "check": "tsc -p .",
