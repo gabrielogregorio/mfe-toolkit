@@ -30,6 +30,7 @@
 
 <div align="center">
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/19efba8bf04b42829cb76c34441271c0)](https://app.codacy.com/gh/gabrielogregorio/daily-tasks?utm_source=github.com&utm_medium=referral&utm_content=gabrielogregorio/daily-tasks&utm_campaign=Badge_Grade_Settings)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/55780d38777a483691e2ec9d605c1aac)](https://www.codacy.com/gh/gabrielogregorio/daily-tasks/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=gabrielogregorio/daily-tasks&amp;utm_campaign=Badge_Grade) [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/55780d38777a483691e2ec9d605c1aac)](https://www.codacy.com/gh/gabrielogregorio/daily-tasks/dashboard?utm_source=github.com&utm_medium=referral&utm_content=gabrielogregorio/daily-tasks&utm_campaign=Badge_Coverage)
 
 </div>
