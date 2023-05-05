@@ -1,5 +1,4 @@
-import { StorageService } from '@/services/StorageService';
-import { expect } from 'vitest';
+import { StorageService } from '@services/StorageService';
 
 describe('StorageService', () => {
   beforeEach(() => {

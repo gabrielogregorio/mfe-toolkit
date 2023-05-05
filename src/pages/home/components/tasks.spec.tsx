@@ -1,8 +1,7 @@
-import { Tasks } from '@/pages/home/components/tasks';
-import type { ITask } from '@/pages/home/types';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Tasks } from '@pages/home/components/tasks';
+import type { ITask } from '@pages/home/types';
 import { fireEvent, render, screen } from '@testing-library/react';
-import type { Mock } from 'vitest';
-import { vi } from 'vitest';
 
 const mockTasks: ITask[] = [
   {
@@ -20,7 +19,7 @@ const mockTasks: ITask[] = [
   },
 ];
 
-const mockIgnoreImplementation: Mock = vi.fn();
+const mockIgnoreImplementation = jest.fn();
 
 describe('<Tasks />', () => {
   it('should render a list items', () => {
@@ -37,8 +36,8 @@ describe('<Tasks />', () => {
   });
 
   it('should update second status task', () => {
-    const mockHandleUpdateStatusTask: Mock = vi.fn();
-    const mockHandleDropTask: Mock = vi.fn();
+    const mockHandleUpdateStatusTask: any = jest.fn();
+    const mockHandleDropTask: any = jest.fn();
 
     render(
       <Tasks tasks={mockTasks} handleUpdateStatus={mockHandleUpdateStatusTask} handleDropTask={mockHandleDropTask} />,
@@ -51,8 +50,8 @@ describe('<Tasks />', () => {
   });
 
   it('should drop first task', () => {
-    const mockHandleUpdateStatusTask: Mock = vi.fn();
-    const mockHandleDropTask: Mock = vi.fn();
+    const mockHandleUpdateStatusTask: any = jest.fn();
+    const mockHandleDropTask: any = jest.fn();
 
     render(
       <Tasks tasks={mockTasks} handleUpdateStatus={mockHandleUpdateStatusTask} handleDropTask={mockHandleDropTask} />,

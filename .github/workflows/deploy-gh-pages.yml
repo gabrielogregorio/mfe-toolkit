@@ -9,28 +9,24 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        pnpm-version: [6.0.2]
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Use pnpm.js ${{ matrix.pnpm-version }}
-        uses: pnpm/action-setup@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
         with:
-          version: ${{ matrix.pnpm-version }}
+          node-version: 16.x
 
-      - name: Install dependencies and test
-        run: pnpm i --frozen-lockfile
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
 
       - name: Build App
-        run: pnpm run build
+        run: yarn build
 
       - name: Deploy with gh-pages
         run: |
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/gabrielogregorio/daily-tasks.git
-          npx gh-pages -d build -u "github-actions-bot <support+actions@github.com>"
+          npx gh-pages -d dist -u "github-actions-bot <support+actions@github.com>"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

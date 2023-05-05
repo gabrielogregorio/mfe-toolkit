@@ -1,4 +1,4 @@
-import type { ITask } from '@/pages/home/types';
+import type { ITask } from '@pages/home/types';
 import type { ReactElement } from 'react';
 
 interface ITaskItemProps {

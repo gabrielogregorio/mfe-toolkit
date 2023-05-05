@@ -1,33 +1,20 @@
 {
+  "extends": "ts-config-single-spa",
   "compilerOptions": {
-    "target": "es6",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
+    "jsx": "react-jsx",
+    "declarationDir": "dist",
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
     "noErrorTruncation": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": false,
     "baseUrl": ".",
     "paths": {
-      "@/services/*": ["src/common/services/*"],
-      "@/utils/*": ["src/common/utils/*"],
-      "@/pages/*": ["src/pages/*"]
-    },
-    "noEmit": true,
-    "jsx": "preserve",
-    "incremental": true,
-    "rootDir": "src",
-    "outDir": "build"
+      "@services/*": ["src/common/services/*"],
+      "@utils/*": ["src/common/utils/*"],
+      "@pages/*": ["src/pages/*"]
+    }
   },
-  "include": ["next-env.d.ts", "./src/**/*.ts", "./src/**/*.tsx"],
-  "exclude": ["node_modules", "./src/**/*.tsx.snap"]
+  "files": ["src/mfe-mfe-daily-tasks.tsx"],
+  "include": ["src/**/*"],
+  "exclude": ["src/**/*.test*"]
 }

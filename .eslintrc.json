@@ -108,14 +108,7 @@
         "unnamedComponents": "arrow-function"
       }
     ],
-    "@typescript-eslint/typedef": [
-      "error",
-      {
-        "arrowParameter": true,
-        "variableDeclaration": true,
-        "variableDeclarationIgnoreFunction": true
-      }
-    ],
+
     "import/no-extraneous-dependencies": [
       "error",
       {

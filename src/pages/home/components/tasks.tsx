@@ -1,5 +1,5 @@
-import { TaskItem } from '@/pages/home/components/taskItem';
-import type { ITask } from '@/pages/home/types';
+import { TaskItem } from '@pages/home/components/taskItem';
+import type { ITask } from '@pages/home/types';
 import type { ReactElement } from 'react';
 
 interface ITasksProps {

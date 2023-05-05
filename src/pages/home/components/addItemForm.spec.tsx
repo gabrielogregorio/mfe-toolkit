@@ -1,11 +1,9 @@
-import { AddItemForm } from '@/pages/home/components/addItemForm';
+import { AddItemForm } from '@pages/home/components/addItemForm';
 import { fireEvent, render, screen } from '@testing-library/react';
-import type { Mock } from 'vitest';
-import { vi } from 'vitest';
 
 describe('<AddItemForm />', () => {
   it('should render a add form', () => {
-    const addTask: Mock = vi.fn();
+    const addTask = jest.fn();
     const { container } = render(<AddItemForm addTask={addTask} />);
 
     expect(screen.getByRole('button', { name: 'Add' })).toBeDefined();
@@ -15,7 +13,7 @@ describe('<AddItemForm />', () => {
   });
 
   it('should add task', () => {
-    const addTask: Mock = vi.fn();
+    const addTask = jest.fn();
     render(<AddItemForm addTask={addTask} />);
 
     expect(addTask).toBeCalledTimes(0);

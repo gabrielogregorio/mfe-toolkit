@@ -1,10 +1,9 @@
-import type { ITask } from '@/pages/home/types';
-import { handleLoadNewDay } from '@/pages/home/utils/handleLoadNeDay';
-import { vi } from 'vitest';
-import { StorageService } from '@/services/StorageService';
-import { taskStorageName } from '@/pages/home/constants/storage';
+import type { ITask } from '@pages/home/types';
+import { handleLoadNewDay } from '@pages/home/utils/handleLoadNeDay';
+import { StorageService } from '@services/StorageService';
+import { taskStorageName } from '@pages/home/constants/storage';
 
-import * as getActualDayAsNumber from '@/utils/getActualDayAsNumber';
+import * as getActualDayAsNumber from '@utils/getActualDayAsNumber';
 
 const referenceActualDay: number = 20;
 const referenceOtherDay: number = 26;
@@ -26,7 +25,7 @@ const mockTasks: ITask[] = [
 
 describe('handleLoadNewDay()', () => {
   it('should return empty data and call storage name', () => {
-    vi.spyOn(StorageService, 'getItemAndParse').mockImplementation((key: string) => {
+    jest.spyOn(StorageService, 'getItemAndParse').mockImplementation((key: string) => {
       if (key === taskStorageName) {
         return [];
       }
@@ -37,21 +36,21 @@ describe('handleLoadNewDay()', () => {
   });
 
   it('should return items without updating when day is now', () => {
-    vi.spyOn(StorageService, 'getItemAndParse').mockImplementation(() => {
+    jest.spyOn(StorageService, 'getItemAndParse').mockImplementation(() => {
       return mockTasks;
     });
 
-    vi.spyOn(getActualDayAsNumber, 'getActualDayAsNumber').mockImplementation(() => referenceActualDay);
+    jest.spyOn(getActualDayAsNumber, 'getActualDayAsNumber').mockImplementation(() => referenceActualDay);
 
     expect(handleLoadNewDay()).toEqual(mockTasks);
   });
 
   it('should return item, updating, because day is other', () => {
-    vi.spyOn(StorageService, 'getItemAndParse').mockImplementation(() => {
+    jest.spyOn(StorageService, 'getItemAndParse').mockImplementation(() => {
       return mockTasks;
     });
 
-    vi.spyOn(getActualDayAsNumber, 'getActualDayAsNumber').mockImplementation(() => referenceOtherDay);
+    jest.spyOn(getActualDayAsNumber, 'getActualDayAsNumber').mockImplementation(() => referenceOtherDay);
 
     expect(handleLoadNewDay()).toEqual([
       { ...mockTasks[0], day: referenceOtherDay, done: false },

@@ -1,8 +1,6 @@
-import { TaskItem } from '@/pages/home/components/taskItem';
-import type { ITask } from '@/pages/home/types';
+import { TaskItem } from '@pages/home/components/taskItem';
+import type { ITask } from '@pages/home/types';
 import { fireEvent, render, screen } from '@testing-library/react';
-import type { Mock } from 'vitest';
-import { vi } from 'vitest';
 
 const mockTask: ITask = {
   id: 123,
@@ -11,7 +9,7 @@ const mockTask: ITask = {
   day: 10,
 };
 
-const mockIgnoreFunction: Mock = vi.fn();
+const mockIgnoreFunction = jest.fn();
 
 describe('<TaskItem />', () => {
   it('should render a done task', () => {
@@ -45,8 +43,8 @@ describe('<TaskItem />', () => {
   });
 
   it('should update status task', () => {
-    const mockHandleUpdateStatusTask: Mock = vi.fn();
-    const mockHandleDropTask: Mock = vi.fn();
+    const mockHandleUpdateStatusTask = jest.fn();
+    const mockHandleDropTask = jest.fn();
 
     render(
       <TaskItem
@@ -63,8 +61,8 @@ describe('<TaskItem />', () => {
   });
 
   it('should drop task', () => {
-    const mockHandleUpdateStatusTask: Mock = vi.fn();
-    const mockHandleDropTask: Mock = vi.fn();
+    const mockHandleUpdateStatusTask = jest.fn();
+    const mockHandleDropTask = jest.fn();
 
     render(
       <TaskItem
