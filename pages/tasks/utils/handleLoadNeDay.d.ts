@@ -1,2 +1,2 @@
-import type { ITask } from '@pages/home/types';
+import type { ITask } from '@/tasks/types';
 export declare const handleLoadNewDay: () => ITask[];

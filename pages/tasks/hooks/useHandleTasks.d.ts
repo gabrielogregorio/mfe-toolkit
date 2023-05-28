@@ -1,4 +1,4 @@
-import type { ITask } from '@pages/home/types';
+import type { ITask } from '@/tasks/types';
 type resetFunctionType = () => void;
 interface IUseHandleTasksResponse {
     handleDropTask: (taskId: number) => void;
