@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Tasks } from '@pages/home/components/tasks';
-import type { ITask } from '@pages/home/types';
 import { fireEvent, render, screen } from '@testing-library/react';
+import { Tasks } from '@/tasks/components/tasks';
+import type { ITask } from '@/tasks/types';
 
 const mockTasks: ITask[] = [
   {

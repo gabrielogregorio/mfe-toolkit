@@ -1,7 +1,7 @@
-import { taskStorageName } from '@pages/home/constants/storage';
-import type { ITask } from '@pages/home/types';
 import { StorageService } from '@services/StorageService';
 import { getActualDayAsNumber } from '@utils/getActualDayAsNumber';
+import { taskStorageName } from '@/tasks/constants/storage';
+import type { ITask } from '@/tasks/types';
 
 const lastUpdateIsToday = (task: ITask): boolean => {
   return task.day === getActualDayAsNumber();

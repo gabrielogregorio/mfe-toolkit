@@ -1,8 +1,7 @@
-<h1 align="center">My Daily Tasks</h1>
+<h1 align="center">Toolkit frontends</h1>
 <p align="center">
-  Daily tasks
   <br>
-  <a href="https://gabrielogregorio.github.io/daily-tasks/"><strong>View Project »</strong></a>
+  <a href="https://gabrielogregorio.github.io/tools/"><strong>View Project »</strong></a>
   <br>
   <br>
 </p>
@@ -21,16 +20,17 @@
 
 <div align="center">
 
-![GitHub estrelas](https://img.shields.io/github/stars/gabrielogregorio/daily-tasks)
-![GitHub last commit](https://img.shields.io/github/last-commit/gabrielogregorio/daily-tasks?style=flat-square)
-![GitHub contributors](https://img.shields.io/github/contributors/gabrielogregorio/daily-tasks)
-![GitHub language count](https://img.shields.io/github/languages/count/gabrielogregorio/daily-tasks)
-![GitHub repo size](https://img.shields.io/github/repo-size/gabrielogregorio/daily-tasks)
+![GitHub estrelas](https://img.shields.io/github/stars/gabrielogregorio/tools)
+![GitHub last commit](https://img.shields.io/github/last-commit/gabrielogregorio/tools?style=flat-square)
+![GitHub contributors](https://img.shields.io/github/contributors/gabrielogregorio/tools)
+![GitHub language count](https://img.shields.io/github/languages/count/gabrielogregorio/tools)
+![GitHub repo size](https://img.shields.io/github/repo-size/gabrielogregorio/tools)
+
 </div>
 
 <div align="center">
 
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/55780d38777a483691e2ec9d605c1aac)](https://www.codacy.com/gh/gabrielogregorio/daily-tasks/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=gabrielogregorio/daily-tasks&amp;utm_campaign=Badge_Grade) [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/55780d38777a483691e2ec9d605c1aac)](https://www.codacy.com/gh/gabrielogregorio/daily-tasks/dashboard?utm_source=github.com&utm_medium=referral&utm_content=gabrielogregorio/daily-tasks&utm_campaign=Badge_Coverage)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/55780d38777a483691e2ec9d605c1aac)](https://www.codacy.com/gh/gabrielogregorio/tools/dashboard?utm_source=github.com&utm_medium=referral&utm_content=gabrielogregorio/tools&utm_campaign=Badge_Grade) [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/55780d38777a483691e2ec9d605c1aac)](https://www.codacy.com/gh/gabrielogregorio/tools/dashboard?utm_source=github.com&utm_medium=referral&utm_content=gabrielogregorio/tools&utm_campaign=Badge_Coverage)
 
 </div>
 
@@ -39,14 +39,16 @@
 List and manage your daily tasks. Everyday, tasks are unmarked.
 
 ### For devs
+
 #### Install extensions for vscode
 
-| Extension | Description | Author|
-|-----|------|------|
-|Eslint|For linting code | Microsoft |
-| Prettier - Code formatter |For beautifully formate code | Prettier |
-| Prettier Eslint | Integration prettier and eslint | Rebecca Vest |
-| Tailwind CSS IntelliSense | For highlight and autocomplete tailwind |Tailwind Labs |
+| Extension                 | Description                             | Author        |
+| ------------------------- | --------------------------------------- | ------------- |
+| Eslint                    | For linting code                        | Microsoft     |
+| Prettier - Code formatter | For beautifully formate code            | Prettier      |
+| Prettier Eslint           | Integration prettier and eslint         | Rebecca Vest  |
+| Tailwind CSS IntelliSense | For highlight and autocomplete tailwind | Tailwind Labs |
 
 #### Done permission for .husk
+
 set permissions for husky and respect commit lint

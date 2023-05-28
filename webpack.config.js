@@ -5,7 +5,7 @@ const { mergeWithRules } = require('webpack-merge');
 module.exports = (webpackConfigEnv, argv) => {
   const defaultConfig = singleSpaDefaults({
     orgName: 'mfe',
-    projectName: 'mfe-daily-tasks',
+    projectName: 'toolkit',
     webpackConfigEnv,
     argv,
   });
@@ -40,7 +40,11 @@ module.exports = (webpackConfigEnv, argv) => {
       alias: {
         '@services': path.resolve(__dirname, 'src/common/services'),
         '@utils': path.resolve(__dirname, 'src/common/utils'),
-        '@pages': path.resolve(__dirname, 'src/pages'),
+
+        '@/common': path.resolve(__dirname, 'src/common'),
+
+        '@/tasks': path.resolve(__dirname, 'src/pages/tasks'),
+        '@/financing': path.resolve(__dirname, 'src/pages/financing'),
       },
       extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
     },

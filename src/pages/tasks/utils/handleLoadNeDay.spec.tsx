@@ -1,9 +1,8 @@
-import type { ITask } from '@pages/home/types';
-import { handleLoadNewDay } from '@pages/home/utils/handleLoadNeDay';
 import { StorageService } from '@services/StorageService';
-import { taskStorageName } from '@pages/home/constants/storage';
-
 import * as getActualDayAsNumber from '@utils/getActualDayAsNumber';
+import type { ITask } from '@/tasks/types';
+import { handleLoadNewDay } from '@/tasks/utils/handleLoadNeDay';
+import { taskStorageName } from '@/tasks/constants/storage';
 
 const referenceActualDay: number = 20;
 const referenceOtherDay: number = 26;

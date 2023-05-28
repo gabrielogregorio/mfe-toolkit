@@ -1,5 +1,5 @@
-import { AddItemForm } from '@pages/home/components/addItemForm';
 import { fireEvent, render, screen } from '@testing-library/react';
+import { AddItemForm } from '@/tasks/components/addItemForm';
 
 describe('<AddItemForm />', () => {
   it('should render a add form', () => {

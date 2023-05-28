@@ -1,6 +1,6 @@
-import { TaskItem } from '@pages/home/components/taskItem';
-import type { ITask } from '@pages/home/types';
 import { fireEvent, render, screen } from '@testing-library/react';
+import { TaskItem } from '@/tasks/components/taskItem';
+import type { ITask } from '@/tasks/types';
 
 const mockTask: ITask = {
   id: 123,

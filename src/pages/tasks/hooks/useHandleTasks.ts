@@ -1,9 +1,9 @@
-import { taskStorageName } from '@pages/home/constants/storage';
-import type { ITask } from '@pages/home/types';
-import { handleLoadNewDay } from '@pages/home/utils/handleLoadNeDay';
 import { StorageService } from '@services/StorageService';
 import { getActualDayAsNumber } from '@utils/getActualDayAsNumber';
 import { useEffect, useState } from 'react';
+import { taskStorageName } from '@/tasks/constants/storage';
+import type { ITask } from '@/tasks/types';
+import { handleLoadNewDay } from '@/tasks/utils/handleLoadNeDay';
 
 type resetFunctionType = () => void;
 

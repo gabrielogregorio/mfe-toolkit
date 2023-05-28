@@ -1,6 +1,6 @@
-import { TaskItem } from '@pages/home/components/taskItem';
-import type { ITask } from '@pages/home/types';
 import type { ReactElement } from 'react';
+import { TaskItem } from '@/tasks/components/taskItem';
+import type { ITask } from '@/tasks/types';
 
 interface ITasksProps {
   tasks: ITask[];

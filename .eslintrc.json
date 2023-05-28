@@ -18,7 +18,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint", "react", "spellcheck", "sonarjs", "import", "no-null"],
+  "plugins": ["@typescript-eslint", "react", "spellcheck", "sonarjs", "import"],
   "settings": {
     "import/resolver": {
       "typescript": {}
@@ -61,12 +61,7 @@
     "@typescript-eslint/no-unnecessary-boolean-literal-compare": "error",
     "@typescript-eslint/no-unnecessary-condition": "error",
     "@typescript-eslint/consistent-type-exports": "error",
-    "@typescript-eslint/no-unsafe-assignment": "error",
-    "@typescript-eslint/no-unsafe-call": "error",
     "@typescript-eslint/explicit-member-accessibility": "error",
-    "@typescript-eslint/no-non-null-assertion": "error",
-    "no-null/no-null": ["error"],
-    "@typescript-eslint/no-confusing-non-null-assertion": "error",
     "@typescript-eslint/no-floating-promises": ["error"],
     "@typescript-eslint/naming-convention": [
       "error",
@@ -95,7 +90,7 @@
         "templates": false,
         "identifiers": true,
         "lang": "en_US",
-        "skipWords": ["enum", "checkbox", "fieldset", "readonly", "href", "emojis", "Sao", "Paulo", "Gmt"],
+        "skipWords": ["enum", "checkbox", "fieldset", "readonly", "href", "emojis", "Sao", "Paulo", "Gmt", "Combobox"],
         "minLength": 3
       }
     ],

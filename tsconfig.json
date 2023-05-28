@@ -11,10 +11,14 @@
     "paths": {
       "@services/*": ["src/common/services/*"],
       "@utils/*": ["src/common/utils/*"],
-      "@pages/*": ["src/pages/*"]
+
+      "@/common/*": ["src/common/*"],
+
+      "@/tasks/*": ["src/pages/tasks/*"],
+      "@/financing/*": ["src/pages/financing/*"]
     }
   },
-  "files": ["src/mfe-mfe-daily-tasks.tsx"],
+  "files": ["src/mfe-toolkit.tsx"],
   "include": ["src/**/*"],
   "exclude": ["src/**/*.test*"]
 }

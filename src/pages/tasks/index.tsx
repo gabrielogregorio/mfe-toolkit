@@ -1,9 +1,9 @@
 import type { ReactElement } from 'react';
-import { AddItemForm } from '@pages/home/components/addItemForm';
-import { useHandleTasks } from '@pages/home/hooks/useHandleTasks';
-import { Tasks } from '@pages/home/components/tasks';
+import { AddItemForm } from '@/tasks/components/addItemForm';
+import { useHandleTasks } from '@/tasks/hooks/useHandleTasks';
+import { Tasks } from '@/tasks/components/tasks';
 
-export const HomePage = (): ReactElement => {
+export const TasksPage = (): ReactElement => {
   const { handleDropTask, handleAddNewTask, handleUpdateStatus, tasks } = useHandleTasks();
 
   return (
