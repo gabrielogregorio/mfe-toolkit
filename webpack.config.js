@@ -45,6 +45,7 @@ module.exports = (webpackConfigEnv, argv) => {
 
         '@/tasks': path.resolve(__dirname, 'src/pages/tasks'),
         '@/financing': path.resolve(__dirname, 'src/pages/financing'),
+        '@/uxGuide': path.resolve(__dirname, 'src/pages/uxGuide'),
       },
       extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
     },

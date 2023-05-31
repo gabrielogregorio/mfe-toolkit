@@ -11,11 +11,10 @@
     "paths": {
       "@services/*": ["src/common/services/*"],
       "@utils/*": ["src/common/utils/*"],
-
       "@/common/*": ["src/common/*"],
-
       "@/tasks/*": ["src/pages/tasks/*"],
-      "@/financing/*": ["src/pages/financing/*"]
+      "@/financing/*": ["src/pages/financing/*"],
+      "@/uxGuide/*": ["src/pages/uxGuide/*"]
     }
   },
   "files": ["src/mfe-toolkit.tsx"],
