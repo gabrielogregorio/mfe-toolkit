@@ -7,14 +7,14 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
     "noErrorTruncation": true,
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
-      "@services/*": ["src/common/services/*"],
-      "@utils/*": ["src/common/utils/*"],
-      "@/common/*": ["src/common/*"],
-      "@/tasks/*": ["src/pages/tasks/*"],
-      "@/financing/*": ["src/pages/financing/*"],
-      "@/uxGuide/*": ["src/pages/uxGuide/*"]
+      "@/services/*": ["common/services/*"],
+      "@utils/*": ["common/utils/*"],
+      "@/common/*": ["common/*"],
+      "@/tasks/*": ["pages/tasks/*"],
+      "@/financing/*": ["pages/financing/*"],
+      "@/uxGuide/*": ["pages/uxGuide/*"]
     }
   },
   "files": ["src/mfe-toolkit.tsx"],
