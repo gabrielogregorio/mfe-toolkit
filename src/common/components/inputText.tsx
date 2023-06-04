@@ -38,12 +38,12 @@ export const InputText = ({
   const styleIsDone = isDone ? 'line-through' : '';
 
   return (
-    <div>
+    <div className="w-full">
       <div ref={refElement}>
         {!hiddenLabel ? <span className="mr-4">{label}</span> : undefined}
 
         <div id={name}>
-          <div className="min-h-[1rem]">
+          <div className="min-h-[1rem] w-full transition-all duration-150">
             {!isEditable ? (
               <button
                 type="button"
@@ -56,9 +56,11 @@ export const InputText = ({
             ) : undefined}
 
             {isEditable ? (
-              <div className="bg-[#313341] border-gray-700 shadow-2xl flex flex-col justify-center items-start relative">
+              <div className="bg-[#313341] border-gray-700 shadow-2xl flex flex-col justify-center items-start relative w-full">
                 <textarea
                   ref={inputRef}
+                  cols={30}
+                  rows={3}
                   name={name}
                   className="bg-transparent p-2 pb-4 w-full focus:outline-none resize-none"
                   id={name}

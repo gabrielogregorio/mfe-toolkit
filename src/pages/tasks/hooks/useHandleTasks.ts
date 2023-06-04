@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import { taskStorageName } from '@/tasks/constants/storage';
 import type { ITask } from '@/tasks/types';
+import { TaskStatusEnum } from '@/tasks/types';
 import { handleLoadNewDay } from '@/tasks/utils/handleLoadNeDay';
 import { StorageService } from '@/services/StorageService';
 
 interface IUseHandleTasksResponse {
   handleDropTask: (taskId: string) => void;
   handleUpdateTask: (taskId: string, newStatus: Partial<ITask>) => void;
+  handleAddBatchNewTasks: (tasks: ITask[]) => void;
   handleAddNewTask: () => void;
   tasks: ITask[];
 }
@@ -22,11 +24,15 @@ export const useHandleTasks = (): IUseHandleTasksResponse => {
     setTasks((prev: ITask[]) => [
       ...prev,
       {
-        status: 'available',
+        status: TaskStatusEnum.available,
         description: 'Jogar 1 Comp Valorant',
         id: new Date().getTime().toString(),
       },
     ]);
+  };
+
+  const handleAddBatchNewTasks = (tasks: ITask[]): void => {
+    setTasks((prev: ITask[]) => [...prev, ...tasks]);
   };
 
   const handleDropTask = (taskId: string): void => {
@@ -53,6 +59,7 @@ export const useHandleTasks = (): IUseHandleTasksResponse => {
     handleDropTask,
     handleUpdateTask,
     handleAddNewTask,
+    handleAddBatchNewTasks,
     tasks,
   };
 };

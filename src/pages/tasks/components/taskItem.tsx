@@ -1,6 +1,7 @@
 import type { ReactElement } from 'react';
 import { useContext, useRef, useEffect, useState } from 'react';
 import type { ITask } from '@/tasks/types';
+import { TaskStatusEnum } from '@/tasks/types';
 import { InputText } from '@/common/components/inputText';
 import { useOutsideClick } from '@/common/hooks/useOutsideClick';
 import { TaskContext } from '@/tasks/contexts/taskContext';
@@ -10,9 +11,10 @@ interface ITaskItemProps {
 }
 
 export const TaskItem = ({ task }: ITaskItemProps): ReactElement => {
-  const styleTaskItemIsDone: string = task.status === 'completed' ? 'line-through text-gray-500' : 'text-white';
+  const styleTaskItemIsDone: string =
+    task.status === TaskStatusEnum.completed ? 'line-through text-gray-500' : 'text-white';
   const styleBoxIsSelected =
-    task.status === 'completed' ? ' border border-[#58C0FF] bg-[#58C0FF]' : ' border border-[#A9A9A9]';
+    task.status === TaskStatusEnum.completed ? ' border border-[#58C0FF] bg-[#58C0FF]' : ' border border-[#A9A9A9]';
   const [name, setName] = useState<string>(task.description);
 
   const [optionsIsOpen, setOptionsIsOpen] = useState<boolean>(false);
@@ -35,36 +37,40 @@ export const TaskItem = ({ task }: ITaskItemProps): ReactElement => {
     <div>
       <div key={task.id} className="flex px-[16px] py-[24px] bg-[#212332] rounded-[3px] group">
         <div
-          className={`text-left flex items-center text-base text-white font-semibold select-none  ${styleTaskItemIsDone} `}>
+          className={`text-left flex w-[90%] flex-1 items-start text-base text-white font-semibold select-none  ${styleTaskItemIsDone} `}>
           <button
             type="button"
             aria-label="marcar concluído"
-            className={`max-w-[22px] max-h-[22px] w-full h-full rounded-[3px] ${styleBoxIsSelected}`}
+            className={`max-w-[22px] mt-2 max-h-[22px] w-full h-full rounded-[3px] ${styleBoxIsSelected}`}
             onClick={(): void => {
-              if (task.status === 'completed') {
-                handleUpdateTask(task.id, { status: 'available' });
-              } else if (task.status === 'available') {
-                handleUpdateTask(task.id, { status: 'completed' });
+              if (task.status === TaskStatusEnum.completed) {
+                handleUpdateTask(task.id, { status: TaskStatusEnum.available });
+              } else if (task.status === TaskStatusEnum.available) {
+                handleUpdateTask(task.id, { status: TaskStatusEnum.completed });
               }
             }}
           />
 
           <span className="w-[21px]" />
-          <InputText
-            label="nome"
-            name="name"
-            value={name}
-            update={(value): void => setName(value)}
-            hiddenLabel
-            isDone={task.status === 'completed'}
-          />
+          <div className="flex-1">
+            <InputText
+              label="nome"
+              name="name"
+              value={name}
+              update={(value): void => setName(value)}
+              hiddenLabel
+              isDone={task.status === TaskStatusEnum.completed}
+            />
+          </div>
         </div>
 
         <div className="flex-1" />
-
-        <div className="flex gap-[47px]  ">
-          <div className="relative">
-            <button type="button" onClick={(): void => setOptionsIsOpen((prev) => !prev)}>
+        <div className="flex gap-[47px] items-start justify-center">
+          <div className="relative" ref={refOptions}>
+            <button
+              type="button"
+              onClick={(): void => setOptionsIsOpen((prev) => !prev)}
+              className="px-[32px] py-[5px]">
               <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clipPath="url(#clip0_85_45)">
                   <path
@@ -81,9 +87,7 @@ export const TaskItem = ({ task }: ITaskItemProps): ReactElement => {
             </button>
 
             {optionsIsOpen ? (
-              <div
-                className="absolute bg-[#2F3241] min-w-[354px] flex flex-col items-start z-[20] rounded-[3px] right-0 mt-2"
-                ref={refOptions}>
+              <div className="absolute bg-[#2F3241] min-w-[354px] flex flex-col items-start z-[20] rounded-[3px] right-0 mt-2">
                 <h4 className="py-[14px] text-center w-full text-base font-semibold">Opções</h4>
 
                 <div className="border-b border-[#A9A9A9] w-full" />

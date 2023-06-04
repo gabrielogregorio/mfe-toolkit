@@ -1,7 +1,7 @@
 {
   "name": "@mfe/mfe-toolkit",
   "engines": {
-    "node": ">=16.x <18.0.0"
+    "node": ">=16.x"
   },
   "scripts": {
     "deploy": "gh-pages -d build",

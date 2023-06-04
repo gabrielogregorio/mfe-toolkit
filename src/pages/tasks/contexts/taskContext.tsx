@@ -6,6 +6,7 @@ import { createContext, useMemo } from 'react';
 interface ITaskContextType {
   handleDropTask: (taskId: string) => void;
   handleUpdateTask: (taskId: string, newStatus: Partial<ITask>) => void;
+  handleAddBatchNewTasks: (tasks: ITask[]) => void;
   handleAddNewTask: () => void;
   tasks: ITask[];
 }
@@ -17,7 +18,7 @@ interface ITaskProviderProps {
 }
 
 export const TaskProvider = ({ children }: ITaskProviderProps): ReactElement => {
-  const { handleDropTask, handleUpdateTask, handleAddNewTask, tasks } = useHandleTasks();
+  const { handleDropTask, handleUpdateTask, handleAddNewTask, handleAddBatchNewTasks, tasks } = useHandleTasks();
 
   const value = useMemo(
     () => ({
@@ -25,8 +26,9 @@ export const TaskProvider = ({ children }: ITaskProviderProps): ReactElement => 
       handleAddNewTask,
       handleUpdateTask,
       handleDropTask,
+      handleAddBatchNewTasks,
     }),
-    [tasks, handleAddNewTask, handleUpdateTask, handleDropTask],
+    [tasks, handleAddNewTask, handleUpdateTask, handleDropTask, handleAddBatchNewTasks],
   );
 
   return <TaskContext.Provider value={value}>{children}</TaskContext.Provider>;
