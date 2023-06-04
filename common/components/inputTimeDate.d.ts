@@ -7,5 +7,5 @@ interface IProps {
     isDone?: boolean;
     update: (value: string) => void;
 }
-export declare const InputText: ({ label, name, value, hiddenLabel, isDone, update, }: IProps) => ReactElement;
+export declare const InputTimeDate: ({ label, name, value, hiddenLabel, isDone, update, }: IProps) => ReactElement;
 export {};

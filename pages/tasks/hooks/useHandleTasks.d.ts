@@ -1,9 +1,9 @@
 import type { ITask } from '@/tasks/types';
-type resetFunctionType = () => void;
 interface IUseHandleTasksResponse {
-    handleDropTask: (taskId: number) => void;
-    handleUpdateStatus: (taskId: number) => void;
-    handleAddNewTask: (text: string, reset: resetFunctionType) => void;
+    handleDropTask: (taskId: string) => void;
+    handleUpdateTask: (taskId: string, newStatus: Partial<ITask>) => void;
+    handleAddBatchNewTasks: (tasks: ITask[]) => void;
+    handleAddNewTask: () => void;
     tasks: ITask[];
 }
 export declare const useHandleTasks: () => IUseHandleTasksResponse;
