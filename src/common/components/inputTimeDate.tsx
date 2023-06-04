@@ -1,4 +1,4 @@
-import type { ReactElement } from 'react';
+import type { ChangeEvent, ReactElement } from 'react';
 import { useRef, useEffect, useState } from 'react';
 import { useOutsideClick } from '@/common/hooks/useOutsideClick';
 
@@ -11,7 +11,7 @@ interface IProps {
   update: (value: string) => void;
 }
 
-export const InputText = ({
+export const InputTimeDate = ({
   label,
   name,
   value,
@@ -20,8 +20,9 @@ export const InputText = ({
   update,
 }: IProps): ReactElement => {
   const refElement = useRef<HTMLDivElement | null>(null);
-  const inputRef = useRef<HTMLTextAreaElement | null>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
   const [isEditable, setIsEditable] = useState<boolean>(false);
+
   const { clickedOutside } = useOutsideClick(refElement);
 
   useEffect(() => {
@@ -35,38 +36,37 @@ export const InputText = ({
     }
   }, [isEditable]);
 
+  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    update(event.target.value);
+  };
+
   const styleIsDone = isDone ? 'line-through' : '';
 
   return (
-    <div className="w-full">
+    <div>
       <div ref={refElement}>
         {!hiddenLabel ? <span className="mr-4">{label}</span> : undefined}
 
         <div id={name}>
-          <div className="min-h-[1rem] w-full transition-all duration-150">
+          <div className="min-h-[1rem]">
             {!isEditable ? (
               <button
                 type="button"
-                onClick={(): void => {
-                  setIsEditable(true);
-                }}
+                onClick={(): void => setIsEditable(true)}
                 className={`p-2 w-full text-left ${styleIsDone}`}>
                 {value}
               </button>
             ) : undefined}
 
             {isEditable ? (
-              <div className="bg-[#313341] border-gray-700 shadow-2xl flex flex-col justify-center items-start relative w-full">
-                <textarea
+              <div className="bg-[#313341] border-gray-700 shadow-2xl flex flex-col justify-center items-start relative">
+                <input
+                  type="time"
                   ref={inputRef}
-                  cols={30}
-                  rows={3}
                   name={name}
-                  className="bg-transparent p-2 pb-4 w-full focus:outline-none resize-none"
+                  className={`bg-transparent p-2 pb-4 w-full focus:outline-none ${styleIsDone}`}
                   id={name}
-                  onChange={(event): void => {
-                    update(event.target.value);
-                  }}
+                  onChange={handleChange}
                   value={value}
                 />
               </div>

@@ -38,7 +38,7 @@ module.exports = (webpackConfigEnv, argv) => {
 
     resolve: {
       alias: {
-        '@services': path.resolve(__dirname, 'src/common/services'),
+        '@/services': path.resolve(__dirname, 'src/common/services'),
         '@utils': path.resolve(__dirname, 'src/common/utils'),
 
         '@/common': path.resolve(__dirname, 'src/common'),

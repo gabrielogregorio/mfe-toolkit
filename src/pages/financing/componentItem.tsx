@@ -20,6 +20,7 @@ export const ComponentItem = ({ item, removeItem, update }: IProps): ReactElemen
   const [name, setName] = useState<string>(item.name);
   const [day, setDay] = useState<number>(item.day);
   const [valor, setValor] = useState<string>(item.valor);
+
   const isFirstLoading = useRef<boolean>(true);
 
   useEffect(() => {
