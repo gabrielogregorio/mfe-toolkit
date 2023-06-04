@@ -37,7 +37,7 @@ export const TasksPage = (): ReactElement => {
     copy(dataStorage);
   };
 
-  const handlePastToClipboard = async (content: string): void => {
+  const handlePastToClipboard = async (content: string): Promise<void> => {
     let errorLine = 0;
     let errorCause = '';
     const newTasksHandled: ITask[] = [];
