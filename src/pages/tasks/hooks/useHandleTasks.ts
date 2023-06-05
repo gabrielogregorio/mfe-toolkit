@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { taskStorageName } from '@/tasks/constants/storage';
 import type { ISubTask, ITask } from '@/tasks/types';
 import { handleLoadNewDay } from '@/tasks/utils/handleLoadNeDay';
-import { StorageService } from '@/services/StorageService';
+import { StorageService } from 'example-kit-dev';
 
 class BuilderSubTask {
   public static builder(taskId: string): ISubTask {

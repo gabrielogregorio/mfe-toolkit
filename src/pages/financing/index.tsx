@@ -2,8 +2,8 @@ import type { ReactElement } from 'react';
 import { useEffect, useState } from 'react';
 import { InputCard } from '@/financing/components/inputCard';
 import type { IDataPrincipalType } from '@/financing/types';
-import { StorageService } from '@/common/services/StorageService';
 import { NAME_ITEMS_MOCK, NAME_ITEMS_MOCK_SALDO, TO_FIXED_DEFAULT } from '@/financing/constants/utils';
+import { StorageService } from 'example-kit-dev';
 import { ComponentItem } from './componentItem';
 
 const generateId = (): string => {
