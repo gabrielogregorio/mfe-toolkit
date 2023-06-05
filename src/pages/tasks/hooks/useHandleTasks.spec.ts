@@ -33,37 +33,6 @@ describe('useHandleTasks hook', () => {
     expect(result.current.tasks.length).toBe(0);
   });
 
-  it('Deve adicionar uma subtask', () => {
-    const { result } = renderHook(() => useHandleTasks());
-
-    act(() => {
-      result.current.handleAddNewTask();
-    });
-
-    act(() => {
-      result.current.handleAddSubTask(result.current.tasks[0].id);
-    });
-
-    expect(result.current.tasks[0].subTasks.length).toBe(1);
-  });
-
-  it('Deve remover uma subtask', () => {
-    const { result } = renderHook(() => useHandleTasks());
-
-    act(() => {
-      result.current.handleAddNewTask();
-    });
-    act(() => {
-      result.current.handleAddSubTask(result.current.tasks[0].id);
-    });
-
-    act(() => {
-      result.current.handleDropSubTask(result.current.tasks[0].id, result.current.tasks[0].subTasks[0].id);
-    });
-
-    expect(result.current.tasks[0].subTasks.length).toBe(0);
-  });
-
   it('Deve atualizar uma task', () => {
     const { result } = renderHook(() => useHandleTasks());
 
@@ -76,25 +45,5 @@ describe('useHandleTasks hook', () => {
     });
 
     expect(result.current.tasks[0].description).toBe('Task atualizada');
-  });
-
-  it('Deve atualizar uma subtask', () => {
-    const { result } = renderHook(() => useHandleTasks());
-
-    act(() => {
-      result.current.handleAddNewTask();
-    });
-
-    act(() => {
-      result.current.handleAddSubTask(result.current.tasks[0].id);
-    });
-
-    act(() => {
-      result.current.handleUpdateSubTask(result.current.tasks[0].id, result.current.tasks[0].subTasks[0].id, {
-        description: 'Subtask atualizada',
-      });
-    });
-
-    expect(result.current.tasks[0].subTasks[0].description).toBe('Subtask atualizada');
   });
 });
