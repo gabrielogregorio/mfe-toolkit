@@ -3,7 +3,7 @@ import { taskStorageName } from '@/tasks/constants/storage';
 import type { ITask } from '@/tasks/types';
 import { TaskStatusEnum } from '@/tasks/types';
 import { handleLoadNewDay } from '@/tasks/utils/handleLoadNeDay';
-import { StorageService } from '@/services/StorageService';
+import { StorageService } from 'example-kit-dev';
 
 interface IUseHandleTasksResponse {
   handleDropTask: (taskId: string) => void;
