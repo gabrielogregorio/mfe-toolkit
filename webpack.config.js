@@ -22,6 +22,10 @@ module.exports = (webpackConfigEnv, argv) => {
     module: {
       rules: [
         {
+          test: /\.(mp3|wav|ogg)$/,
+          use: "file-loader",
+        },
+        {
           test: /\.css$/i,
           use: [
             require.resolve('style-loader', {

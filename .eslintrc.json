@@ -94,7 +94,7 @@
         "minLength": 3
       }
     ],
-    "@typescript-eslint/explicit-function-return-type": "error",
+
     "import/no-unused-modules": [1, { "unusedExports": true }],
     "react/function-component-definition": [
       2,
