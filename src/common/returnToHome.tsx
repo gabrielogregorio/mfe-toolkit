@@ -1,13 +1,16 @@
-import { LinkNavigationWithSound } from './linkNavigationWithSound';
+import { ButtonWithSound } from 'ogregorio-component-library-studies';
+import { useNavigate } from 'react-router-dom';
 
 export const ReturnToHome = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="flex-1 mb-[60px] mt-[20px] flex flex-col justify-end items-center  animate-fadeIn">
-      <div className="bg-white/70 w-full h-[2px]"></div>
+      <div className="bg-white/70 w-full h-[2px]" />
 
       <div className="w-full flex items-center mt-[11px]">
-        <LinkNavigationWithSound
-          to="/"
+        <ButtonWithSound
+          onClick={() => navigate('/')}
           content={
             <span className="flex items-center">
               <span className="mr-[9px]">

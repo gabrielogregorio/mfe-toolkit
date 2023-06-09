@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { Text } from './Text';
+import { Text } from 'ogregorio-component-library-studies';
 
 interface IProps {
   href: string;

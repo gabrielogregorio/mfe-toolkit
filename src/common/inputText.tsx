@@ -1,6 +1,6 @@
 import type { ReactElement } from 'react';
 import { useRef, useEffect, useState } from 'react';
-import { useOutsideClick } from '@/common/useOutsideClick';
+import { ButtonWithSound, TextVariantEnum, useOutsideClick } from 'ogregorio-component-library-studies';
 
 interface IProps {
   label: string;
@@ -35,8 +35,6 @@ export const InputText = ({
     }
   }, [isEditable]);
 
-  const styleIsDone = isDone ? 'line-through' : '';
-
   return (
     <div className="w-full">
       <div ref={refElement}>
@@ -45,24 +43,24 @@ export const InputText = ({
         <div id={name}>
           <div className="min-h-[1rem] w-full transition-all duration-150">
             {!isEditable ? (
-              <button
-                type="button"
+              <ButtonWithSound
+                variant={TextVariantEnum.basicItemMenu}
+                content={value}
+                isDone={isDone}
                 onClick={(): void => {
                   setIsEditable(true);
                 }}
-                className={`p-2 w-full text-left ${styleIsDone}`}>
-                {value}
-              </button>
+              />
             ) : undefined}
 
             {isEditable ? (
-              <div className="bg-[#313341] border-gray-700 shadow-2xl flex flex-col justify-center items-start relative w-full">
+              <div className="border-gray-700 bg-black/70 shadow-2xl flex flex-col justify-center items-start relative w-full hover:text-white group-hover:text-white transition-all tracking-[0%] duration-150 leading-[19.2px] font-roboto-Condensed">
                 <textarea
                   ref={inputRef}
                   cols={30}
                   rows={3}
                   name={name}
-                  className="bg-transparent p-2 pb-4 w-full focus:outline-none resize-none"
+                  className={`bg-transparent p-2 pb-4 w-full focus:outline-none resize-none ${TextVariantEnum.basicItemMenu}`}
                   id={name}
                   onChange={(event): void => {
                     update(event.target.value);

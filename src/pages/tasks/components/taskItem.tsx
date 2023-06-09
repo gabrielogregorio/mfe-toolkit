@@ -4,7 +4,7 @@ import type { ITask } from '@/tasks/types';
 import { TaskStatusEnum } from '@/tasks/types';
 import { InputText } from '@/common/inputText';
 import { TaskContext } from '@/tasks/contexts/taskContext';
-import { useOutsideClick } from '@/common/useOutsideClick';
+import { ButtonWithSound, TextVariantEnum, useOutsideClick } from 'ogregorio-component-library-studies';
 
 interface ITaskItemProps {
   task: ITask;
@@ -13,8 +13,7 @@ interface ITaskItemProps {
 export const TaskItem = ({ task }: ITaskItemProps): ReactElement => {
   const styleTaskItemIsDone: string =
     task.status === TaskStatusEnum.completed ? 'line-through text-gray-500' : 'text-white';
-  const styleBoxIsSelected =
-    task.status === TaskStatusEnum.completed ? ' border border-[#58C0FF] bg-[#58C0FF]' : ' border border-[#A9A9A9]';
+
   const [name, setName] = useState<string>(task.description);
 
   const [optionsIsOpen, setOptionsIsOpen] = useState<boolean>(false);
@@ -34,23 +33,10 @@ export const TaskItem = ({ task }: ITaskItemProps): ReactElement => {
   }, [name]);
 
   return (
-    <div>
-      <div key={task.id} className="flex px-[16px] py-[24px] bg-[#212332] rounded-[3px] group">
+    <div className="w-full">
+      <div key={task.id} className="flex rounded-[3px] group">
         <div
           className={`text-left flex w-[90%] flex-1 items-start text-base text-white font-semibold select-none  ${styleTaskItemIsDone} `}>
-          <button
-            type="button"
-            aria-label="marcar concluído"
-            className={`max-w-[22px] mt-2 max-h-[22px] w-full h-full rounded-[3px] ${styleBoxIsSelected}`}
-            onClick={(): void => {
-              if (task.status === TaskStatusEnum.completed) {
-                handleUpdateTask(task.id, { status: TaskStatusEnum.available });
-              } else if (task.status === TaskStatusEnum.available) {
-                handleUpdateTask(task.id, { status: TaskStatusEnum.completed });
-              }
-            }}
-          />
-
           <span className="w-[21px]" />
           <div className="flex-1">
             <InputText
@@ -64,43 +50,65 @@ export const TaskItem = ({ task }: ITaskItemProps): ReactElement => {
           </div>
         </div>
 
-        <div className="flex-1" />
-        <div className="flex gap-[47px] items-start justify-center">
+        <button
+          type="button"
+          aria-label="marcar concluído"
+          className="flex-1"
+          onClick={(): void => {
+            if (task.status === TaskStatusEnum.completed) {
+              handleUpdateTask(task.id, { status: TaskStatusEnum.available });
+            } else if (task.status === TaskStatusEnum.available) {
+              handleUpdateTask(task.id, { status: TaskStatusEnum.completed });
+            }
+          }}
+        />
+        <button
+          type="button"
+          aria-label="marcar concluído"
+          className="min-w-[22px] min-h-[22px] max-w-[22px] max-h-[22px]  block mt-2 w-full h-full rounded-full border border-white"
+          onClick={(): void => {
+            if (task.status === TaskStatusEnum.completed) {
+              handleUpdateTask(task.id, { status: TaskStatusEnum.available });
+            } else if (task.status === TaskStatusEnum.available) {
+              handleUpdateTask(task.id, { status: TaskStatusEnum.completed });
+            }
+          }}>
+          {task.status === TaskStatusEnum.completed ? (
+            <svg
+              width="7"
+              height="5"
+              viewBox="0 0 7 5"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-[22px]">
+              <path
+                d="M6.85353 0.146468C7.04882 0.341759 7.04882 0.658911 6.85353 0.854201L2.85398 4.85376C2.65869 5.04905 2.34154 5.04905 2.14624 4.85376L0.146468 2.85398C-0.0488227 2.65869 -0.0488227 2.34154 0.146468 2.14624C0.341759 1.95095 0.658911 1.95095 0.854201 2.14624L2.50089 3.79137L6.14736 0.146468C6.34265 -0.0488227 6.6598 -0.0488227 6.85509 0.146468H6.85353Z"
+                fill="white"
+              />
+            </svg>
+          ) : undefined}
+        </button>
+
+        <div className="flex gap-[47px] items-center justify-center ml-[1rem]">
           <div className="relative" ref={refOptions}>
             <button
               type="button"
+              aria-label="opções"
               onClick={(): void => setOptionsIsOpen((prev) => !prev)}
-              className="px-[32px] py-[5px]">
-              <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clipPath="url(#clip0_85_45)">
-                  <path
-                    d="M10.5 0C7.71523 0 5.04451 1.10625 3.07538 3.07538C1.10625 5.04451 0 7.71523 0 10.5C0 13.2848 1.10625 15.9555 3.07538 17.9246C5.04451 19.8938 7.71523 21 10.5 21C13.2848 21 15.9555 19.8938 17.9246 17.9246C19.8938 15.9555 21 13.2848 21 10.5C21 7.71523 19.8938 5.04451 17.9246 3.07538C15.9555 1.10625 13.2848 0 10.5 0ZM5.53711 9.88477C5.15156 9.49922 5.15156 8.87578 5.53711 8.49434C5.92266 8.11289 6.54609 8.10879 6.92754 8.49434L10.4959 12.0627L14.0643 8.49434C14.4498 8.10879 15.0732 8.10879 15.4547 8.49434C15.8361 8.87988 15.8402 9.50332 15.4547 9.88477L11.1973 14.1504C10.8117 14.5359 10.1883 14.5359 9.80684 14.1504L5.53711 9.88477Z"
-                    fill="#A9A9A9"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="clip0_85_45">
-                    <rect width="21" height="21" fill="white" />
-                  </clipPath>
-                </defs>
-              </svg>
+              className="block bg-red-300 px-[1rem] cursor-pointer py-[.8rem]">
+              <span className="block min-w-[10px] min-h-[10px] max-w-[10px] max-h-[10px] group-hover:bg-white rounded-full group-hover:scale-[180%] duration-150 transition-all" />
             </button>
 
             {optionsIsOpen ? (
-              <div className="absolute bg-[#2F3241] min-w-[354px] flex flex-col items-start z-[20] rounded-[3px] right-0 mt-2">
-                <h4 className="py-[14px] text-center w-full text-base font-semibold">Opções</h4>
-
-                <div className="border-b border-[#A9A9A9] w-full" />
-
-                <button
-                  type="button"
+              <div className="absolute bg-black/70 flex flex-col items-start z-[20] rounded-[3px] animate-fadeInDrop right-0 mt-2 px-[1rem] py-[1rem]">
+                <ButtonWithSound
+                  variant={TextVariantEnum.basicItemMenu}
+                  content="Excluir"
                   onClick={(): void => {
                     handleDropTask(task.id);
                     setOptionsIsOpen(false);
                   }}
-                  className="text-base font-semibold text-white px-[26px] py-[19px] w-full text-left hover:bg-[#3D4153]">
-                  Excluir
-                </button>
+                />
               </div>
             ) : undefined}
           </div>

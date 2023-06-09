@@ -4,8 +4,9 @@ import { InputCard } from '@/financing/components/inputCard';
 import type { IDataPrincipalType } from '@/financing/types';
 import { NAME_ITEMS_MOCK, NAME_ITEMS_MOCK_SALDO, TO_FIXED_DEFAULT } from '@/financing/constants/utils';
 import { StorageService } from 'example-kit-dev';
-import { Breadcrumb } from '@/common/breacrumb';
+
 import { ReturnToHome } from '@/common/returnToHome';
+import { Breadcrumb } from 'ogregorio-component-library-studies';
 import { ComponentItem } from './componentItem';
 import Background1 from '../bg1.webp';
 

@@ -1,6 +1,6 @@
+import { useOutsideClick } from 'ogregorio-component-library-studies';
 import type { ReactElement, ReactNode } from 'react';
 import { useRef, useEffect, useState } from 'react';
-import { useOutsideClick } from '@/common/useOutsideClick';
 
 interface IProps<T> {
   label: string;

@@ -2,10 +2,9 @@
 /* eslint-disable max-lines */
 import type { Dispatch, ReactElement, ReactNode, SetStateAction } from 'react';
 import { useState } from 'react';
-import { Breadcrumb } from '@/common/breacrumb';
-import { useHandleKeyboard } from '@/common/useHandleKeyboard';
 import { useNavigate } from 'react-router-dom';
 import { ReturnToHome } from '@/common/returnToHome';
+import { Breadcrumb, useHandleKeyboard } from 'ogregorio-component-library-studies';
 import SofaImage from './sofa.png';
 import Cursor from './cursor.gif';
 import ErrorImage from './error.gif';
@@ -629,7 +628,7 @@ export const UxGuidePage = (): ReactElement => {
         <img src={Background1} className="w-[100vw] h-[100vh] object-cover" alt="" />
       </div>
       <div className="absolute h-screen w-screen max-h-screen max-w-screen top-0 left-0 z-20 bg-black/80 animate-fadeInDrop transition-all duration-200 pt-[80px] px-[90px] flex flex-col">
-        <Breadcrumb content="GuiaUx" />
+        <Breadcrumb content="GUIA UX" />
 
         <div className="flex gap-6 mt-[64px] animate-fadeIn  max-h-full overflow-y-hidden px-[2rem]">
           <div className="flex-1 overflow-y-scroll scrollbar">
