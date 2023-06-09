@@ -6,4 +6,4 @@
 
 ### I running lint, tsc, tests and commit lint
 
--   [] yes
+- [] yes
