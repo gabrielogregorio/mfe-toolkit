@@ -1,6 +1,6 @@
 import type { ReactElement } from 'react';
 import { useRef, useEffect, useState } from 'react';
-import { useOutsideClick } from '@/common/hooks/useOutsideClick';
+import { useOutsideClick } from '@/common/useOutsideClick';
 
 interface IProps {
   label: string;

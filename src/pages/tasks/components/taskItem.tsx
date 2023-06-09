@@ -2,9 +2,9 @@ import type { ReactElement } from 'react';
 import { useContext, useRef, useEffect, useState } from 'react';
 import type { ITask } from '@/tasks/types';
 import { TaskStatusEnum } from '@/tasks/types';
-import { InputText } from '@/common/components/inputText';
-import { useOutsideClick } from '@/common/hooks/useOutsideClick';
+import { InputText } from '@/common/inputText';
 import { TaskContext } from '@/tasks/contexts/taskContext';
+import { useOutsideClick } from '@/common/useOutsideClick';
 
 interface ITaskItemProps {
   task: ITask;

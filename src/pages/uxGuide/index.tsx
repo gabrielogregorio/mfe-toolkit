@@ -1,13 +1,19 @@
+/* eslint-disable max-lines-per-function */
 /* eslint-disable max-lines */
 import type { Dispatch, ReactElement, ReactNode, SetStateAction } from 'react';
 import { useState } from 'react';
-
+import { Breadcrumb } from '@/common/breacrumb';
+import { useHandleKeyboard } from '@/common/useHandleKeyboard';
+import { useNavigate } from 'react-router-dom';
+import { ReturnToHome } from '@/common/returnToHome';
 import SofaImage from './sofa.png';
 import Cursor from './cursor.gif';
 import ErrorImage from './error.gif';
 import LoadingImage from './loading.gif';
 import HoverImage from './hover.gif';
 import InvalidImage from './invalid.gif';
+
+import Background1 from '../bg1.webp';
 
 interface IMockDataIsSelectedType {
   text: string;
@@ -606,219 +612,280 @@ export const UxGuidePage = (): ReactElement => {
   const [dataOnInvalid, setDataOnInvalid] = useState<IMockDataIsSelectedType[]>(mockDataOnError);
   const [dataOnLoading, setDataOnLoading] = useState<IMockDataIsSelectedType[]>(mockDataOnError);
   const [dataResizable, setDataResizable] = useState<IMockDataIsSelectedType[]>(mockDataIsResizable);
-
   const [dataTipDesing, setDataTipDesing] = useState<IMockDataIsSelectedType[]>(mockTipsDesign);
   const [dataTipImage, setDataTipImage] = useState<IMockDataIsSelectedType[]>(mockTipsImage);
 
+  const navigate = useNavigate();
+
+  useHandleKeyboard((key) => {
+    if (key === 'Escape') {
+      navigate('/');
+    }
+  });
+
   return (
-    <div className="flex flex-col items-center py-8 text-white bg-[#212332] min-h-screen w-full px-[100px]">
-      <div className="min-h-[240px] flex items-center justify-center">
-        <h1 className="font-bold text-3xl cursor-pointer select-none">
-          {'Utilitário para desenvolver componentes'.split(' ').map((word, index) => {
-            return (
-              <span
-                className={`${colors[index]} transition-all duration-[2s] hover:duration-150 hover:text-5xl `}
-                key={word}>
-                {word}
-                {` `}
-              </span>
-            );
-          })}
-        </h1>
+    <div className="relative min-h-[100vh] max-h-[100vh] h-full max-w-[100vw] w-full">
+      <div className="absolute h-screen w-screen top-0 left-0 z-10">
+        <img src={Background1} className="w-[100vw] h-[100vh] object-cover" alt="" />
       </div>
+      <div className="absolute h-screen w-screen max-h-screen max-w-screen top-0 left-0 z-20 bg-black/80 animate-fadeInDrop transition-all duration-200 pt-[80px] px-[90px] flex flex-col">
+        <Breadcrumb content="GuiaUx" />
 
-      <div className="max-w-[50rem] w-full px-3">
-        <div>
-          <div>
-            <h3 className="text-gray-200 text-xl border-b-2 border-teal-500 mb-2 uppercase">
-              Componente é selecionável?
-            </h3>
+        <div className="flex gap-6 mt-[64px] animate-fadeIn  max-h-full overflow-y-hidden px-[2rem]">
+          <div className="flex-1 overflow-y-scroll scrollbar">
+            <div className="mt-[70px] ml-[62px] flex flex-col items-center">
+              <div className="">
+                <h1 className="font-bold text-3xl cursor-pointer select-none h-[50px]">
+                  {'Utilitário para desenvolver componentes'.split(' ').map((word, index) => {
+                    return (
+                      <span
+                        className={`${colors[index]} text-white/70 transition-all duration-[2s] hover:duration-150 hover:text-5xl `}
+                        key={word}>
+                        {word}
+                        {` `}
+                      </span>
+                    );
+                  })}
+                </h1>
+              </div>
+
+              <div className="h-[40px]" />
+
+              <div className="max-w-[50rem] w-full px-3">
+                <div>
+                  <div>
+                    <h3 className="text-gray-200 text-xl border-b-2 border-teal-500 mb-2 uppercase">
+                      Componente é selecionável?
+                    </h3>
+                  </div>
+
+                  <ItemTaskOneOK
+                    dataCursor={dataIsSelected}
+                    handleUpdate={(textButton: string): void =>
+                      handleUpdateStatus(textButton, dataIsSelected, setDataIsSelected)
+                    }
+                  />
+                </div>
+
+                <div className="mt-16">
+                  <div>
+                    <h3 className="text-gray-200 text-xl border-b-2 border-teal-500 mb-2 uppercase flex">
+                      <img src={Cursor} width={25} height={25} alt="cursores" aria-hidden className="mr-2" />
+                      Qual será o cursor?
+                    </h3>
+                  </div>
+
+                  <ItemTaskOneOK
+                    dataCursor={dataCursor}
+                    handleUpdate={(textButton: string): void =>
+                      handleUpdateStatus(textButton, dataCursor, setDataCursor)
+                    }
+                  />
+                </div>
+
+                <div className="mt-16">
+                  <div>
+                    <h3 className="text-gray-200 text-xl border-b-2 border-teal-500 mb-2 uppercase">É arrastável?</h3>
+                  </div>
+
+                  <ItemTaskOneOK
+                    dataCursor={ImageIsDraggable}
+                    handleUpdate={(textButton: string): void =>
+                      handleUpdateStatus(textButton, ImageIsDraggable, setImageIsDraggable)
+                    }
+                  />
+                </div>
+
+                <div className="mt-16">
+                  <div>
+                    <h3 className="text-gray-200 text-xl border-b-2 border-teal-500 mb-2 uppercase flex items-center">
+                      <img src={HoverImage} width={90} height={90} alt="efeito de hover" aria-hidden className="mr-2" />
+                      Ao passar o mouse no desktop (hover)?
+                    </h3>
+                  </div>
+
+                  <ItemTaskOneOK
+                    dataCursor={dataIsHover}
+                    handleUpdate={(textButton: string): void =>
+                      handleUpdateStatus(textButton, dataIsHover, setDataIsHover)
+                    }
+                  />
+                </div>
+
+                <div className="mt-16">
+                  <div>
+                    <h3 className="text-gray-200 text-xl border-b-2 border-teal-500 mb-2 uppercase">
+                      Ao Focar o input
+                    </h3>
+                  </div>
+
+                  <ItemTaskOneOK
+                    dataCursor={dataOnfocus}
+                    handleUpdate={(textButton: string): void =>
+                      handleUpdateStatus(textButton, dataOnfocus, setDataOnfocus)
+                    }
+                  />
+                </div>
+
+                <div className="mt-16">
+                  <div>
+                    <h3 className="text-gray-200 text-xl border-b-2 border-teal-500 mb-2 uppercase">
+                      🚫 Já fez quando estiver desabilitado?
+                    </h3>
+                  </div>
+
+                  <ItemTaskOneOK
+                    dataCursor={dataOnDisabled}
+                    handleUpdate={(textButton: string): void =>
+                      handleUpdateStatus(textButton, dataOnDisabled, setDataOnDisabled)
+                    }
+                  />
+                </div>
+
+                <div className="mt-16">
+                  <div>
+                    <h3 className="text-gray-200 text-xl border-b-2 border-teal-500 mb-2 uppercase flex items-center">
+                      <img
+                        src={LoadingImage}
+                        width={90}
+                        height={90}
+                        alt="efeito de loading"
+                        aria-hidden
+                        className="mr-2"
+                      />
+                      Já fez quando tiver com loading, isso é, aguardando resposta?
+                    </h3>
+                  </div>
+
+                  <ItemTaskOneOK
+                    dataCursor={dataOnLoading}
+                    handleUpdate={(textButton: string): void =>
+                      handleUpdateStatus(textButton, dataOnLoading, setDataOnLoading)
+                    }
+                  />
+                </div>
+
+                <div className="mt-16">
+                  <div>
+                    <h3 className="text-gray-200 text-xl border-b-2 border-teal-500 mb-2 uppercase flex items-center">
+                      <img
+                        src={InvalidImage}
+                        width={90}
+                        height={90}
+                        alt="efeito de invalido"
+                        aria-hidden
+                        className="mr-2"
+                      />
+                      Já fez quando tiver valores inválidos?
+                    </h3>
+                  </div>
+
+                  <ItemTaskOneOK
+                    dataCursor={dataOnInvalid}
+                    handleUpdate={(textButton: string): void =>
+                      handleUpdateStatus(textButton, dataOnInvalid, setDataOnInvalid)
+                    }
+                  />
+                </div>
+
+                <div className="mt-16">
+                  <div>
+                    <h3 className="text-gray-200 text-xl border-b-2 border-teal-500 mb-2 uppercase flex items-center">
+                      <img src={ErrorImage} width={90} height={90} alt="efeito de erro" aria-hidden className="mr-2" />{' '}
+                      Já fez quando tiver erro ao obter informações?
+                    </h3>
+                  </div>
+
+                  <ItemTaskOneOK
+                    dataCursor={dataOnError}
+                    handleUpdate={(textButton: string): void =>
+                      handleUpdateStatus(textButton, dataOnError, setDataOnError)
+                    }
+                  />
+                </div>
+
+                <div className="mt-16">
+                  <div>
+                    <h3 className="text-gray-200 text-xl border-b-2 border-teal-500 mb-2 uppercase">
+                      ⛔ Já fez quando a resposta do servidor for vazia?
+                    </h3>
+                  </div>
+
+                  <ItemTaskOneOK
+                    dataCursor={dataOnEmpty}
+                    handleUpdate={(textButton: string): void =>
+                      handleUpdateStatus(textButton, dataOnEmpty, setDataOnEmpty)
+                    }
+                  />
+                </div>
+
+                <div className="mt-16">
+                  <div>
+                    <h3 className="text-gray-200 text-xl border-b-2 border-teal-500 mb-2 uppercase">
+                      ♿ Se for imagem, foi pensado o texto alternativo?
+                    </h3>
+                  </div>
+
+                  <ItemTaskOneOK
+                    dataCursor={dataOnImgAlternative}
+                    handleUpdate={(textButton: string): void =>
+                      handleUpdateStatus(textButton, dataOnImgAlternative, setDataOnImgAlternative)
+                    }
+                  />
+                </div>
+
+                <div className="mt-16">
+                  <div>
+                    <h3 className="text-gray-200 text-xl border-b-2 border-teal-500 mb-2 uppercase">
+                      Pode ser redimensionado?
+                    </h3>
+                  </div>
+
+                  <ItemTaskOneOK
+                    dataCursor={dataResizable}
+                    handleUpdate={(textButton: string): void =>
+                      handleUpdateStatus(textButton, dataResizable, setDataResizable)
+                    }
+                  />
+                </div>
+
+                <div className="mt-16">
+                  <div>
+                    <h3 className="text-gray-200 text-xl border-b-2 border-teal-500 mb-2 uppercase">
+                      Qual deve ser o comportamento do componente?
+                    </h3>
+                  </div>
+                  <ItemTaskOneOK
+                    dataCursor={dataTipDesing}
+                    handleUpdate={(textButton: string): void =>
+                      handleUpdateStatus(textButton, dataTipDesing, setDataTipDesing)
+                    }
+                  />
+                </div>
+
+                <div className="mt-16">
+                  <div>
+                    <h3 className="text-gray-200 text-xl border-b-2 border-teal-500 mb-2 uppercase">
+                      Qual deve ser o comportamento se for imagem?
+                    </h3>
+                  </div>
+                  <ItemTaskOneOK
+                    dataCursor={dataTipImage}
+                    handleUpdate={(textButton: string): void =>
+                      handleUpdateStatus(textButton, dataTipImage, setDataTipImage)
+                    }
+                  />
+                </div>
+              </div>
+
+              <div className="h-[10rem]" />
+            </div>
+            <div className="h-[5rem]" />
           </div>
-
-          <ItemTaskOneOK
-            dataCursor={dataIsSelected}
-            handleUpdate={(textButton: string): void =>
-              handleUpdateStatus(textButton, dataIsSelected, setDataIsSelected)
-            }
-          />
         </div>
 
-        <div className="mt-16">
-          <div>
-            <h3 className="text-gray-200 text-xl border-b-2 border-teal-500 mb-2 uppercase flex">
-              <img src={Cursor} width={25} height={25} alt="cursores" aria-hidden className="mr-2" />
-              Qual será o cursor?
-            </h3>
-          </div>
-
-          <ItemTaskOneOK
-            dataCursor={dataCursor}
-            handleUpdate={(textButton: string): void => handleUpdateStatus(textButton, dataCursor, setDataCursor)}
-          />
-        </div>
-
-        <div className="mt-16">
-          <div>
-            <h3 className="text-gray-200 text-xl border-b-2 border-teal-500 mb-2 uppercase">É arrastável?</h3>
-          </div>
-
-          <ItemTaskOneOK
-            dataCursor={ImageIsDraggable}
-            handleUpdate={(textButton: string): void =>
-              handleUpdateStatus(textButton, ImageIsDraggable, setImageIsDraggable)
-            }
-          />
-        </div>
-
-        <div className="mt-16">
-          <div>
-            <h3 className="text-gray-200 text-xl border-b-2 border-teal-500 mb-2 uppercase flex items-center">
-              <img src={HoverImage} width={90} height={90} alt="efeito de hover" aria-hidden className="mr-2" />
-              Ao passar o mouse no desktop (hover)?
-            </h3>
-          </div>
-
-          <ItemTaskOneOK
-            dataCursor={dataIsHover}
-            handleUpdate={(textButton: string): void => handleUpdateStatus(textButton, dataIsHover, setDataIsHover)}
-          />
-        </div>
-
-        <div className="mt-16">
-          <div>
-            <h3 className="text-gray-200 text-xl border-b-2 border-teal-500 mb-2 uppercase">Ao Focar o input</h3>
-          </div>
-
-          <ItemTaskOneOK
-            dataCursor={dataOnfocus}
-            handleUpdate={(textButton: string): void => handleUpdateStatus(textButton, dataOnfocus, setDataOnfocus)}
-          />
-        </div>
-
-        <div className="mt-16">
-          <div>
-            <h3 className="text-gray-200 text-xl border-b-2 border-teal-500 mb-2 uppercase">
-              🚫 Já fez quando estiver desabilitado?
-            </h3>
-          </div>
-
-          <ItemTaskOneOK
-            dataCursor={dataOnDisabled}
-            handleUpdate={(textButton: string): void =>
-              handleUpdateStatus(textButton, dataOnDisabled, setDataOnDisabled)
-            }
-          />
-        </div>
-
-        <div className="mt-16">
-          <div>
-            <h3 className="text-gray-200 text-xl border-b-2 border-teal-500 mb-2 uppercase flex items-center">
-              <img src={LoadingImage} width={90} height={90} alt="efeito de loading" aria-hidden className="mr-2" />
-              Já fez quando tiver com loading, isso é, aguardando resposta?
-            </h3>
-          </div>
-
-          <ItemTaskOneOK
-            dataCursor={dataOnLoading}
-            handleUpdate={(textButton: string): void => handleUpdateStatus(textButton, dataOnLoading, setDataOnLoading)}
-          />
-        </div>
-
-        <div className="mt-16">
-          <div>
-            <h3 className="text-gray-200 text-xl border-b-2 border-teal-500 mb-2 uppercase flex items-center">
-              <img src={InvalidImage} width={90} height={90} alt="efeito de invalido" aria-hidden className="mr-2" />
-              Já fez quando tiver valores inválidos?
-            </h3>
-          </div>
-
-          <ItemTaskOneOK
-            dataCursor={dataOnInvalid}
-            handleUpdate={(textButton: string): void => handleUpdateStatus(textButton, dataOnInvalid, setDataOnInvalid)}
-          />
-        </div>
-
-        <div className="mt-16">
-          <div>
-            <h3 className="text-gray-200 text-xl border-b-2 border-teal-500 mb-2 uppercase flex items-center">
-              <img src={ErrorImage} width={90} height={90} alt="efeito de erro" aria-hidden className="mr-2" /> Já fez
-              quando tiver erro ao obter informações?
-            </h3>
-          </div>
-
-          <ItemTaskOneOK
-            dataCursor={dataOnError}
-            handleUpdate={(textButton: string): void => handleUpdateStatus(textButton, dataOnError, setDataOnError)}
-          />
-        </div>
-
-        <div className="mt-16">
-          <div>
-            <h3 className="text-gray-200 text-xl border-b-2 border-teal-500 mb-2 uppercase">
-              ⛔ Já fez quando a resposta do servidor for vazia?
-            </h3>
-          </div>
-
-          <ItemTaskOneOK
-            dataCursor={dataOnEmpty}
-            handleUpdate={(textButton: string): void => handleUpdateStatus(textButton, dataOnEmpty, setDataOnEmpty)}
-          />
-        </div>
-
-        <div className="mt-16">
-          <div>
-            <h3 className="text-gray-200 text-xl border-b-2 border-teal-500 mb-2 uppercase">
-              ♿ Se for imagem, foi pensado o texto alternativo?
-            </h3>
-          </div>
-
-          <ItemTaskOneOK
-            dataCursor={dataOnImgAlternative}
-            handleUpdate={(textButton: string): void =>
-              handleUpdateStatus(textButton, dataOnImgAlternative, setDataOnImgAlternative)
-            }
-          />
-        </div>
-
-        <div className="mt-16">
-          <div>
-            <h3 className="text-gray-200 text-xl border-b-2 border-teal-500 mb-2 uppercase">
-              Pode ser redimensionado?
-            </h3>
-          </div>
-
-          <ItemTaskOneOK
-            dataCursor={dataResizable}
-            handleUpdate={(textButton: string): void => handleUpdateStatus(textButton, dataResizable, setDataResizable)}
-          />
-        </div>
-
-        <div className="mt-16">
-          <div>
-            <h3 className="text-gray-200 text-xl border-b-2 border-teal-500 mb-2 uppercase">
-              Qual deve ser o comportamento do componente?
-            </h3>
-          </div>
-          <ItemTaskOneOK
-            dataCursor={dataTipDesing}
-            handleUpdate={(textButton: string): void => handleUpdateStatus(textButton, dataTipDesing, setDataTipDesing)}
-          />
-        </div>
-
-        <div className="mt-16">
-          <div>
-            <h3 className="text-gray-200 text-xl border-b-2 border-teal-500 mb-2 uppercase">
-              Qual deve ser o comportamento se for imagem?
-            </h3>
-          </div>
-          <ItemTaskOneOK
-            dataCursor={dataTipImage}
-            handleUpdate={(textButton: string): void => handleUpdateStatus(textButton, dataTipImage, setDataTipImage)}
-          />
-        </div>
+        <ReturnToHome />
       </div>
-
-      <div className="h-[10rem]" />
     </div>
   );
 };

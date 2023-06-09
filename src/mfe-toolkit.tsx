@@ -1,13 +1,21 @@
+/* eslint-disable spellcheck/spell-checker */
 // eslint-disable-next-line no-use-before-define
 import React from 'react';
 import ReactDOM from 'react-dom';
 import singleSpaReact from 'single-spa-react';
+import { AcceptAudioProvider } from './contexts/acceptAudio';
 import { Root } from './root.component';
 
-const lifecycles = singleSpaReact({
+const lifeCycles = singleSpaReact({
   React,
   ReactDOM,
-  rootComponent: Root,
+  rootComponent: () => {
+    return (
+      <AcceptAudioProvider>
+        <Root />
+      </AcceptAudioProvider>
+    );
+  },
   // @ts-ignore
   errorBoundary(err, info, props) {
     <div>
@@ -20,4 +28,4 @@ const lifecycles = singleSpaReact({
   },
 });
 
-export const { bootstrap, mount, unmount } = lifecycles;
+export const { bootstrap, mount, unmount } = lifeCycles;

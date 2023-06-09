@@ -1,6 +1,6 @@
 import type { ReactElement } from 'react';
 import { useEffect, useRef, useState } from 'react';
-import { useOutsideClick } from '@/common/hooks/useOutsideClick';
+import { useOutsideClick } from '@/common/useOutsideClick';
 
 const MAXIMIMUM_DAYS_IN_MONTH = 31;
 

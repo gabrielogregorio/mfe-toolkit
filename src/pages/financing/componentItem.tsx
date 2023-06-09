@@ -1,8 +1,8 @@
 import type { ReactElement, ReactNode } from 'react';
 import { useEffect, useRef, useState } from 'react';
-import { InputText } from '@/common/components/inputText';
-import { Combobox } from '@/common/components/combobox';
-import { Calendar } from '@/common/components/calendar';
+import { InputText } from '@/common/inputText';
+import { Combobox } from '@/common/combobox';
+import { Calendar } from '@/common/calendar';
 import { paymentStatusOptions } from '@/financing/data/paymentStatusOptions';
 import type { IDataPrincipalType, paymentStatusType } from '@/financing/types';
 
