@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import type { ReactNode } from 'react';
 export declare const TextLarge: ({ children }: {
     children: ReactNode;
 }) => JSX.Element;
