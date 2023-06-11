@@ -1,11 +1,12 @@
 import type { ReactElement } from 'react';
-interface IProps {
-    label: string;
+type inputMasks = 'default' | 'brl';
+interface IInputTextProps {
     name: string;
     value: string;
-    hiddenLabel?: boolean;
-    isDone?: boolean;
     update: (value: string) => void;
+    mask?: inputMasks;
+    isRisked?: boolean;
+    isDisabled?: boolean;
 }
-export declare const InputText: ({ label, name, value, hiddenLabel, isDone, update, }: IProps) => ReactElement;
+export declare const InputText: ({ name, value, update, isRisked, mask, isDisabled, }: IInputTextProps) => ReactElement;
 export {};

@@ -3,6 +3,7 @@ interface IProps {
     name: string;
     update: (value: number) => void;
     value: number;
+    isRisked?: boolean;
 }
-export declare const Calendar: ({ name, update, value }: IProps) => ReactElement;
+export declare const Calendar: ({ name, update, value, isRisked }: IProps) => ReactElement;
 export {};

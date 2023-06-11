@@ -5,5 +5,5 @@ interface IProps {
     removeItem: (id: string) => void;
     item: IDataPrincipalType;
 }
-export declare const ComponentItem: ({ item, removeItem, update }: IProps) => ReactElement;
+export declare const FinancingItem: ({ item, removeItem, update }: IProps) => ReactElement;
 export {};
