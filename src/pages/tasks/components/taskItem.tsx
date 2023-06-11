@@ -4,7 +4,7 @@ import type { ITask } from '@/tasks/types';
 import { TaskStatusEnum } from '@/tasks/types';
 import { InputText } from '@/common/inputText';
 import { TaskContext } from '@/tasks/contexts/taskContext';
-import { ButtonWithSound, TextVariantEnum, useOutsideClick } from 'ogregorio-component-library-studies';
+import { useOutsideClick, Button } from 'ogregorio-component-library-studies';
 
 interface ITaskItemProps {
   task: ITask;
@@ -39,14 +39,7 @@ export const TaskItem = ({ task }: ITaskItemProps): ReactElement => {
           className={`text-left flex w-[90%] flex-1 items-start text-base text-white font-semibold select-none  ${styleTaskItemIsDone} `}>
           <span className="w-[21px]" />
           <div className="flex-1">
-            <InputText
-              label="nome"
-              name="name"
-              value={name}
-              update={(value): void => setName(value)}
-              hiddenLabel
-              isDone={task.status === TaskStatusEnum.completed}
-            />
+            <InputText label="nome" name="name" value={name} update={(value): void => setName(value)} hiddenLabel />
           </div>
         </div>
 
@@ -101,8 +94,7 @@ export const TaskItem = ({ task }: ITaskItemProps): ReactElement => {
 
             {optionsIsOpen ? (
               <div className="absolute bg-black/70 flex flex-col items-start z-[20] rounded-[3px] animate-fadeInDrop right-0 mt-2 px-[1rem] py-[1rem]">
-                <ButtonWithSound
-                  variant={TextVariantEnum.basicItemMenu}
+                <Button
                   content="Excluir"
                   onClick={(): void => {
                     handleDropTask(task.id);

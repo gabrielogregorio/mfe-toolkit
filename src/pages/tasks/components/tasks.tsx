@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { TaskItem } from '@/tasks/components/taskItem';
 import type { ITask } from '@/tasks/types';
 import { TaskContext } from '@/tasks/contexts/taskContext';
-import { ButtonWithSound, TextVariantEnum } from 'ogregorio-component-library-studies';
+import { Button } from 'ogregorio-component-library-studies';
 
 export const Tasks = (): ReactElement => {
   const { tasks, handleAddNewTask } = useContext(TaskContext);
@@ -16,11 +16,7 @@ export const Tasks = (): ReactElement => {
 
       <div className="flex items-center justify-start">
         <span className="font-semibold text-[1rem]" />
-        <ButtonWithSound
-          variant={TextVariantEnum.basicItemMenu}
-          content="Nova task"
-          onClick={(): void => handleAddNewTask()}
-        />
+        <Button content="Nova task" onClick={(): void => handleAddNewTask()} />
 
         <span className="ml-[20px]">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

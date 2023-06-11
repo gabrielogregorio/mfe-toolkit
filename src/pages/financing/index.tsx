@@ -4,9 +4,8 @@ import { InputCard } from '@/financing/components/inputCard';
 import type { IDataPrincipalType } from '@/financing/types';
 import { NAME_ITEMS_MOCK, NAME_ITEMS_MOCK_SALDO, TO_FIXED_DEFAULT } from '@/financing/constants/utils';
 import { StorageService } from 'example-kit-dev';
-
-import { ReturnToHome } from '@/common/returnToHome';
-import { Breadcrumb } from 'ogregorio-component-library-studies';
+import { useNavigate } from 'react-router-dom';
+import { LayoutScreen } from 'ogregorio-component-library-studies';
 import { ComponentItem } from './componentItem';
 import Background1 from '../bg1.webp';
 
@@ -57,6 +56,8 @@ export const FinancingPage = (): ReactElement => {
     setItemsToPurchase(newValue);
   };
 
+  const navigate = useNavigate();
+
   const [inputMoney, setInputMoney] = useState<string>(getInitial()?.input || '');
   const [remaining, setRemaining] = useState<string>('');
 
@@ -72,88 +73,79 @@ export const FinancingPage = (): ReactElement => {
   }, [inputMoney]);
 
   return (
-    <div className="relative min-h-[100vh] max-h-[100vh] h-full max-w-[100vw] w-full">
-      <div className="absolute h-screen w-screen top-0 left-0 z-10">
-        <img src={Background1} className="w-[100vw] h-[100vh] object-cover" alt="" />
-      </div>
-      <div className="absolute h-screen w-screen max-h-screen max-w-screen top-0 left-0 z-20 bg-black/80 animate-fadeInDrop transition-all duration-200 pt-[80px] px-[90px] flex flex-col">
-        <Breadcrumb content="QUANTO SOBRA" />
-
-        <div className="flex gap-6 mt-[64px] animate-fadeIn  max-h-full overflow-y-hidden px-[2rem]">
-          <div className="flex-1 overflow-y-scroll scrollbar">
-            <div className="flex flex-col justify-center items-center w-full px-[33px] py-[68px]">
-              <div className=" py-16">
-                <div className="flex items-center justify-between">
-                  <InputCard
-                    name="Current"
-                    label="Current"
-                    value={inputMoney}
-                    update={(value): void => {
-                      updateRemaining(value);
-                      setInputMoney(value);
-                    }}
-                  />
-                  <div className="!flex-1" />
-                  <InputCard
-                    name="Remaining"
-                    label="Remaining"
-                    value={remaining}
-                    update={(value): void => setRemaining(value)}
-                  />
-                </div>
-              </div>
-
-              <div className="h-[50px]" />
-
-              <div className="bg-[#58C0FF]">
-                {itemsToPurchase.map((itemToPurchase) => {
-                  return (
-                    <ComponentItem
-                      update={(data): void => {
-                        const dataX = StorageService.getItemAndParse<IDataPrincipalType[]>(NAME_ITEMS_MOCK);
-
-                        if (dataX) {
-                          const newValue = dataX.map((itemX) => {
-                            if (itemX.id === data.id) {
-                              return {
-                                day: data.day,
-                                name: data.name,
-                                paymentStatus: data.paymentStatus,
-                                valor: data.valor,
-                                id: data.id,
-                              };
-                            }
-
-                            return itemX;
-                          });
-
-                          StorageService.setItem(NAME_ITEMS_MOCK, JSON.stringify(newValue));
-                        }
-                      }}
-                      key={itemToPurchase.id}
-                      item={itemToPurchase}
-                      removeItem={removeItem}
-                    />
-                  );
-                })}
-              </div>
-
-              <div>
-                <button
-                  type="button"
-                  onClick={(): void => handleAddNewItem()}
-                  className="bg-[#212332] text-white text-[1rem] font-bold text-left mt-2 px-4 py-3">
-                  Add New
-                </button>
+    <LayoutScreen screenTitle="QUANTO SOBRA" onReturn={() => navigate('/')} bg={Background1}>
+      <div className="flex gap-6 mt-[64px] animate-fadeIn  max-h-full overflow-y-hidden px-[2rem]">
+        <div className="flex-1 overflow-y-scroll scrollbar">
+          <div className="flex flex-col justify-center items-center w-full px-[33px] py-[68px]">
+            <div className=" py-16">
+              <div className="flex items-center justify-between">
+                <InputCard
+                  name="Current"
+                  label="Current"
+                  value={inputMoney}
+                  update={(value): void => {
+                    updateRemaining(value);
+                    setInputMoney(value);
+                  }}
+                />
+                <div className="!flex-1" />
+                <InputCard
+                  name="Remaining"
+                  label="Remaining"
+                  value={remaining}
+                  update={(value): void => setRemaining(value)}
+                />
               </div>
             </div>
 
-            <div className="h-[5rem]" />
-          </div>
-        </div>
+            <div className="h-[50px]" />
 
-        <ReturnToHome />
+            <div className="bg-[#58C0FF]">
+              {itemsToPurchase.map((itemToPurchase) => {
+                return (
+                  <ComponentItem
+                    update={(data): void => {
+                      const dataX = StorageService.getItemAndParse<IDataPrincipalType[]>(NAME_ITEMS_MOCK);
+
+                      if (dataX) {
+                        const newValue = dataX.map((itemX) => {
+                          if (itemX.id === data.id) {
+                            return {
+                              day: data.day,
+                              name: data.name,
+                              paymentStatus: data.paymentStatus,
+                              valor: data.valor,
+                              id: data.id,
+                            };
+                          }
+
+                          return itemX;
+                        });
+
+                        StorageService.setItem(NAME_ITEMS_MOCK, JSON.stringify(newValue));
+                      }
+                    }}
+                    key={itemToPurchase.id}
+                    item={itemToPurchase}
+                    removeItem={removeItem}
+                  />
+                );
+              })}
+            </div>
+
+            <div>
+              <button
+                type="button"
+                onClick={(): void => handleAddNewItem()}
+                className="bg-[#212332] text-white text-[1rem] font-bold text-left mt-2 px-4 py-3">
+                Add New
+              </button>
+            </div>
+          </div>
+
+          <div className="h-[5rem]" />
+        </div>
       </div>
-    </div>
+    </LayoutScreen>
   );
 };

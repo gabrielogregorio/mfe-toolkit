@@ -1,24 +1,16 @@
 import type { ReactElement } from 'react';
 import { useRef, useEffect, useState } from 'react';
-import { ButtonWithSound, TextVariantEnum, useOutsideClick } from 'ogregorio-component-library-studies';
+import { useOutsideClick, Button } from 'ogregorio-component-library-studies';
 
 interface IProps {
   label: string;
   name: string;
   value: string;
   hiddenLabel?: boolean;
-  isDone?: boolean;
   update: (value: string) => void;
 }
 
-export const InputText = ({
-  label,
-  name,
-  value,
-  hiddenLabel = false,
-  isDone = false,
-  update,
-}: IProps): ReactElement => {
+export const InputText = ({ label, name, value, hiddenLabel = false, update }: IProps): ReactElement => {
   const refElement = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
   const [isEditable, setIsEditable] = useState<boolean>(false);
@@ -43,10 +35,8 @@ export const InputText = ({
         <div id={name}>
           <div className="min-h-[1rem] w-full transition-all duration-150">
             {!isEditable ? (
-              <ButtonWithSound
-                variant={TextVariantEnum.basicItemMenu}
+              <Button
                 content={value}
-                isDone={isDone}
                 onClick={(): void => {
                   setIsEditable(true);
                 }}
@@ -60,7 +50,7 @@ export const InputText = ({
                   cols={30}
                   rows={3}
                   name={name}
-                  className={`bg-transparent p-2 pb-4 w-full focus:outline-none resize-none ${TextVariantEnum.basicItemMenu}`}
+                  className="bg-transparent p-2 pb-4 w-full focus:outline-none resize-none"
                   id={name}
                   onChange={(event): void => {
                     update(event.target.value);
