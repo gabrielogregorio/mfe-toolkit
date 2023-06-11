@@ -623,7 +623,7 @@ export const UxGuidePage = (): ReactElement => {
 
   return (
     <LayoutScreen screenTitle="HELP UX" onReturn={() => navigate('/')} bg={Background1}>
-      <div className="flex gap-6 mt-[64px] animate-fadeIn  max-h-full overflow-y-hidden px-[2rem] w-full">
+      <div className="flex gap-6 h-full animate-fadeIn  max-h-full overflow-y-hidden px-[2rem] w-full">
         <div className="flex-1 overflow-y-scroll scrollbar">
           <div className="mt-[70px] ml-[62px] flex flex-col items-center">
             <div className="">

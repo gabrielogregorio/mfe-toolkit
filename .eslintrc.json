@@ -90,7 +90,19 @@
         "templates": false,
         "identifiers": true,
         "lang": "en_US",
-        "skipWords": ["enum", "checkbox", "fieldset", "readonly", "href", "emojis", "Sao", "Paulo", "Gmt", "Combobox"],
+        "skipWords": [
+          "enum",
+          "checkbox",
+          "fieldset",
+          "readonly",
+          "href",
+          "emojis",
+          "Sao",
+          "Paulo",
+          "Gmt",
+          "Combobox",
+          "brl"
+        ],
         "minLength": 3
       }
     ],

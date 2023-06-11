@@ -14,9 +14,10 @@ interface IProps {
   name: string;
   update: (value: number) => void;
   value: number;
+  isRisked?: boolean;
 }
 
-export const Calendar = ({ name, update, value }: IProps): ReactElement => {
+export const Calendar = ({ name, update, value, isRisked = false }: IProps): ReactElement => {
   const [optionsIsOpened, setOptionsIsOpened] = useState<boolean>(false);
   const refElement = useRef<HTMLDivElement | null>(null);
   const { clickedOutside } = useOutsideClick(refElement);
@@ -34,23 +35,11 @@ export const Calendar = ({ name, update, value }: IProps): ReactElement => {
           <button
             type="button"
             onClick={(): void => setOptionsIsOpened(true)}
-            className="bg-[#212332] text-white px-4 py-2 text-base ">
+            className={`px-4 py-2 text-base ${isRisked ? 'line-through text-white/40' : 'text-white'}`}>
             {value}
           </button>
           <div
-            className={`absolute border-2 bg-[#414559] border-gray-700 shadow-2xl z-[100]  ${styleOptionIsExpanded}`}>
-            <div className="flex items-center justify-between px-3 py-3">
-              <div>Calendário</div>
-
-              <button
-                type="button"
-                className="font-bold text-gray-400 text-base"
-                onClick={(): void => setOptionsIsOpened(false)}>
-                x
-              </button>
-            </div>
-
-            <div className="border-2 border-gray-400" />
+            className={`absolute border-2 border-white shadow-2xl z-[100] bg-black/60 backdrop-blur-[30px] ${styleOptionIsExpanded}`}>
             <div className="min-w-[20rem] grid grid-cols-7 gap-3">
               {days.map((option) => {
                 return (
@@ -58,7 +47,7 @@ export const Calendar = ({ name, update, value }: IProps): ReactElement => {
                     type="button"
                     key={option.day}
                     value={option.day}
-                    className="px-2 py-2 hover:bg-[#58C0FF] transition-all duration-75 text-center text-base"
+                    className="px-2 py-2 hover:bg-white hover:text-black transition-all duration-75 text-center text-base"
                     onClick={(): void => {
                       update(option.day);
                       setOptionsIsOpened(false);

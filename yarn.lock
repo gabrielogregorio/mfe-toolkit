@@ -7388,10 +7388,10 @@ obuf@^1.0.0, obuf@^1.1.2:
   resolved "https://registry.yarnpkg.com/obuf/-/obuf-1.1.2.tgz#09bea3343d41859ebd446292d11c9d4db619084e"
   integrity sha512-PX1wu0AmAdPqOL1mWhqmlOd8kOIZQwGZw6rh7uby9fTc5lhaOWFLX3I6R1hrF9k3zUY40e6igsLGkDXK92LJNg==
 
-ogregorio-component-library-studies@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/ogregorio-component-library-studies/-/ogregorio-component-library-studies-1.1.0.tgz#1b640e278318acb0530f4cee742a1612114f9c24"
-  integrity sha512-lKFYX3ni+jqps/9n1HFf7nO04lClNoZPu2b+DfJxCrUKEPM9KHYDwDLLCbjJFLLwLYb9VonW9PERXzLUFqLrGg==
+ogregorio-component-library-studies@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ogregorio-component-library-studies/-/ogregorio-component-library-studies-2.0.0.tgz#15c972d7673eb874f0a2b81642f60b0505076be8"
+  integrity sha512-5qXPCR3kFEbLGTpPIHGzGunxkDuQ+CtVknFAUEl4T0g9/Mw8nF9knl3/SczcEAb3FsCPep5p7QjFwot/Z8RVeA==
   dependencies:
     example-kit-dev "^1.1.0"
 

@@ -1,30 +1,19 @@
 import type { ReactElement } from 'react';
-import { useContext, useRef, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import type { ITask } from '@/tasks/types';
 import { TaskStatusEnum } from '@/tasks/types';
 import { InputText } from '@/common/inputText';
 import { TaskContext } from '@/tasks/contexts/taskContext';
-import { useOutsideClick, Button } from 'ogregorio-component-library-studies';
+import { BlockCheck } from '@/common/blockCheck';
 
 interface ITaskItemProps {
   task: ITask;
 }
 
 export const TaskItem = ({ task }: ITaskItemProps): ReactElement => {
-  const styleTaskItemIsDone: string =
-    task.status === TaskStatusEnum.completed ? 'line-through text-gray-500' : 'text-white';
-
   const [name, setName] = useState<string>(task.description);
 
-  const [optionsIsOpen, setOptionsIsOpen] = useState<boolean>(false);
-
   const { handleUpdateTask, handleDropTask } = useContext(TaskContext);
-
-  const refOptions = useRef<HTMLDivElement>(null);
-  const { clickedOutside } = useOutsideClick(refOptions);
-  useEffect(() => {
-    setOptionsIsOpen(false);
-  }, [clickedOutside]);
 
   useEffect(() => {
     if (task.description !== name) {
@@ -33,79 +22,49 @@ export const TaskItem = ({ task }: ITaskItemProps): ReactElement => {
   }, [name]);
 
   return (
-    <div className="w-full">
-      <div key={task.id} className="flex rounded-[3px] group">
-        <div
-          className={`text-left flex w-[90%] flex-1 items-start text-base text-white font-semibold select-none  ${styleTaskItemIsDone} `}>
-          <span className="w-[21px]" />
-          <div className="flex-1">
-            <InputText label="nome" name="name" value={name} update={(value): void => setName(value)} hiddenLabel />
-          </div>
-        </div>
+    <tr className="group w-full py-[2px]">
+      <td className="py-[4px] px-[5px] text-left">
+        <InputText
+          name="name"
+          isRisked={task.status === TaskStatusEnum.completed}
+          value={name}
+          update={(value): void => setName(value)}
+        />
+      </td>
 
-        <button
-          type="button"
-          aria-label="marcar concluído"
-          className="flex-1"
-          onClick={(): void => {
-            if (task.status === TaskStatusEnum.completed) {
-              handleUpdateTask(task.id, { status: TaskStatusEnum.available });
-            } else if (task.status === TaskStatusEnum.available) {
+      <td className="py-[4px] px-[5px] pl-[62px] text-left">
+        <BlockCheck
+          isChecked={task.status === TaskStatusEnum.completed}
+          update={(newValue) => {
+            if (newValue) {
               handleUpdateTask(task.id, { status: TaskStatusEnum.completed });
+            } else {
+              handleUpdateTask(task.id, { status: TaskStatusEnum.available });
             }
           }}
         />
+      </td>
+      <td className="py-[4px] px-[5px] pl-[62px] text-left">
         <button
           type="button"
-          aria-label="marcar concluído"
-          className="min-w-[22px] min-h-[22px] max-w-[22px] max-h-[22px]  block mt-2 w-full h-full rounded-full border border-white"
+          className="w-[35px] h-[20px] flex items-center justify-center"
           onClick={(): void => {
-            if (task.status === TaskStatusEnum.completed) {
-              handleUpdateTask(task.id, { status: TaskStatusEnum.available });
-            } else if (task.status === TaskStatusEnum.available) {
-              handleUpdateTask(task.id, { status: TaskStatusEnum.completed });
-            }
+            handleDropTask(task.id);
           }}>
-          {task.status === TaskStatusEnum.completed ? (
-            <svg
-              width="7"
-              height="5"
-              viewBox="0 0 7 5"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-[22px]">
-              <path
-                d="M6.85353 0.146468C7.04882 0.341759 7.04882 0.658911 6.85353 0.854201L2.85398 4.85376C2.65869 5.04905 2.34154 5.04905 2.14624 4.85376L0.146468 2.85398C-0.0488227 2.65869 -0.0488227 2.34154 0.146468 2.14624C0.341759 1.95095 0.658911 1.95095 0.854201 2.14624L2.50089 3.79137L6.14736 0.146468C6.34265 -0.0488227 6.6598 -0.0488227 6.85509 0.146468H6.85353Z"
-                fill="white"
-              />
-            </svg>
-          ) : undefined}
+          <svg
+            width="13"
+            height="14"
+            viewBox="0 0 13 14"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="invisible group-hover:visible">
+            <path
+              d="M3.69687 0.483984L3.5 0.875H0.875C0.391016 0.875 0 1.26602 0 1.75C0 2.23398 0.391016 2.625 0.875 2.625H11.375C11.859 2.625 12.25 2.23398 12.25 1.75C12.25 1.26602 11.859 0.875 11.375 0.875H8.75L8.55312 0.483984C8.40547 0.185938 8.10195 0 7.77109 0H4.47891C4.14805 0 3.84453 0.185938 3.69687 0.483984ZM11.375 3.5H0.875L1.45469 12.7695C1.49844 13.4613 2.07266 14 2.76445 14H9.48555C10.1773 14 10.7516 13.4613 10.7953 12.7695L11.375 3.5Z"
+              fill="white"
+            />
+          </svg>
         </button>
-
-        <div className="flex gap-[47px] items-center justify-center ml-[1rem]">
-          <div className="relative" ref={refOptions}>
-            <button
-              type="button"
-              aria-label="opções"
-              onClick={(): void => setOptionsIsOpen((prev) => !prev)}
-              className="block bg-red-300 px-[1rem] cursor-pointer py-[.8rem]">
-              <span className="block min-w-[10px] min-h-[10px] max-w-[10px] max-h-[10px] group-hover:bg-white rounded-full group-hover:scale-[180%] duration-150 transition-all" />
-            </button>
-
-            {optionsIsOpen ? (
-              <div className="absolute bg-black/70 flex flex-col items-start z-[20] rounded-[3px] animate-fadeInDrop right-0 mt-2 px-[1rem] py-[1rem]">
-                <Button
-                  content="Excluir"
-                  onClick={(): void => {
-                    handleDropTask(task.id);
-                    setOptionsIsOpen(false);
-                  }}
-                />
-              </div>
-            ) : undefined}
-          </div>
-        </div>
-      </div>
-    </div>
+      </td>
+    </tr>
   );
 };
