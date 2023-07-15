@@ -9,24 +9,37 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [16.x]
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Setup Node.js
+      - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
-          node-version: 16.x
+          node-version: ${{ matrix.node-version }}
 
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
+      - name: install dependencies
+        run: yarn --frozen-lockfile
 
-      - name: Build App
+      - name: build
         run: yarn build
 
-      - name: Deploy with gh-pages
+      - name: get current version
+        id: get-version
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "Current version: $VERSION"
+          echo "TAG_VERSION=v$VERSION" >> $GITHUB_ENV
+
+      - name: deploy with gh-pages by version
         run: |
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/gabrielogregorio/mfe-toolkit.git
-          npx gh-pages -d dist -u "github-actions-bot <support+actions@github.com>"
+          mkdir -p deploy/${{ env.TAG_VERSION }}
+          cp -r dist/* deploy/${{ env.TAG_VERSION }}
+          npx gh-pages -d deploy --add -u "github-actions-bot <support+actions@github.com>"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
