@@ -101,7 +101,8 @@
           "Paulo",
           "Gmt",
           "Combobox",
-          "brl"
+          "brl",
+          "Resizable"
         ],
         "minLength": 3
       }

@@ -20,7 +20,7 @@ import {
   useReadFromClipboard,
 } from 'ogregorio-component-library-studies';
 import { useNavigate } from 'react-router-dom';
-import Bg1 from '../bg1.webp';
+import Background1 from '../bg1.webp';
 
 export const TasksPage = (): ReactElement => {
   const [copyIsOpen, setCopyIsOpen] = useState<boolean>(false);
@@ -96,7 +96,7 @@ export const TasksPage = (): ReactElement => {
   };
 
   return (
-    <LayoutScreen screenTitle="TASKS" onReturn={() => navigate('/')} bg={Bg1}>
+    <LayoutScreen screenTitle="TASKS" onReturn={() => navigate('/')} bg={Background1}>
       <div className="w-full flex-1 pr-[1rem]">
         {errorOnPastToClipboard ? (
           <div className="top-0 left-0 absolute z-50 w-screen h-screen flex items-center justify-center animate-fadeInDrop">
