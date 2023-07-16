@@ -610,7 +610,7 @@ export const UxGuidePage = (): ReactElement => {
   const [dataOnInvalid, setDataOnInvalid] = useState<IMockDataIsSelectedType[]>(mockDataOnError);
   const [dataOnLoading, setDataOnLoading] = useState<IMockDataIsSelectedType[]>(mockDataOnError);
   const [dataResizable, setDataResizable] = useState<IMockDataIsSelectedType[]>(mockDataIsResizable);
-  const [dataTipDesing, setDataTipDesing] = useState<IMockDataIsSelectedType[]>(mockTipsDesign);
+  const [dataTipDesign, setDataTipDesign] = useState<IMockDataIsSelectedType[]>(mockTipsDesign);
   const [dataTipImage, setDataTipImage] = useState<IMockDataIsSelectedType[]>(mockTipsImage);
 
   const navigate = useNavigate();
@@ -844,9 +844,9 @@ export const UxGuidePage = (): ReactElement => {
                   </h3>
                 </div>
                 <ItemTaskOneOK
-                  dataCursor={dataTipDesing}
+                  dataCursor={dataTipDesign}
                   handleUpdate={(textButton: string): void =>
-                    handleUpdateStatus(textButton, dataTipDesing, setDataTipDesing)
+                    handleUpdateStatus(textButton, dataTipDesign, setDataTipDesign)
                   }
                 />
               </div>

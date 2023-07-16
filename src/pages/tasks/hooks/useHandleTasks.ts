@@ -31,8 +31,8 @@ export const useHandleTasks = (): IUseHandleTasksResponse => {
     ]);
   };
 
-  const handleAddBatchNewTasks = (tasks: ITask[]): void => {
-    setTasks((prev: ITask[]) => [...prev, ...tasks]);
+  const handleAddBatchNewTasks = (tasksLocal: ITask[]): void => {
+    setTasks((prev: ITask[]) => [...prev, ...tasksLocal]);
   };
 
   const handleDropTask = (taskId: string): void => {

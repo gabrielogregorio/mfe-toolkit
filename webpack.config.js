@@ -2,6 +2,24 @@ const path = require('path');
 const singleSpaDefaults = require('webpack-config-single-spa-react-ts');
 const { mergeWithRules } = require('webpack-merge');
 
+const ruleProcessTailwindStyles = {
+  test: /\.css$/i,
+  use: [
+    require.resolve('style-loader', {
+      paths: [require.resolve('webpack-config-single-spa')],
+    }),
+    require.resolve('css-loader', {
+      paths: [require.resolve('webpack-config-single-spa')],
+    }),
+    'postcss-loader',
+  ],
+};
+
+const ruleProcessMusicFiles = {
+  test: /\.(mp3|wav|ogg)$/,
+  use: 'file-loader',
+};
+
 module.exports = (webpackConfigEnv, argv) => {
   const defaultConfig = singleSpaDefaults({
     orgName: 'mfe',
@@ -18,28 +36,9 @@ module.exports = (webpackConfigEnv, argv) => {
       },
     },
   })(defaultConfig, {
-    // customize the webpack config here
     module: {
-      rules: [
-        {
-          test: /\.(mp3|wav|ogg)$/,
-          use: 'file-loader',
-        },
-        {
-          test: /\.css$/i,
-          use: [
-            require.resolve('style-loader', {
-              paths: [require.resolve('webpack-config-single-spa')],
-            }),
-            require.resolve('css-loader', {
-              paths: [require.resolve('webpack-config-single-spa')],
-            }),
-            'postcss-loader',
-          ],
-        },
-      ],
+      rules: [ruleProcessMusicFiles, ruleProcessTailwindStyles],
     },
-
     resolve: {
       alias: {
         '@/services': path.resolve(__dirname, 'src/common/services'),
